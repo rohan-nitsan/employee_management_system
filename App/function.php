@@ -56,12 +56,14 @@ function edit($id)
     return $data;
 }
 
-function update($id, $fname, $lname, $address, $gender, $email, $day, $month, $year, $hsc)
+function update($id, $name, $e_id, $email, $gender, $address, $blood_group, $mobile, $hobbies, $year_from, $year_to, $position, $company, $salary, $avatar)
 {
     include '../Config/connection.php';
-    $dob = $day . '-' . $month . '-' . $year;
-
-    $cmd = "UPDATE employee SET fname='$fname', lname='$lname',address='$address',gender='$gender',email='$email',dob='$dob',hsc='$hsc' WHERE id='$id'";
+    $hobbie = "";
+    foreach ($hobbies as $hob) {
+        $hobbie .= $hob . ",";
+    }
+    $cmd = "UPDATE employee SET name='$name',employee_id='$e_id',email='$email',gender='$gender',address='$address',blood_group='$blood_group',mobile_no='$mobile',hobbies='$hobbie',year_from='$year_from',year_to='$year_to',position='$position',company='$company',salary='$salary',avatar='$avatar' WHERE id='$id'";
     $result = mysqli_query($con, $cmd) or die(mysqli_error($con));
     if ($result) {
         echo "<script>alert('Update Successful');</script>";
