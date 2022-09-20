@@ -21,7 +21,7 @@
                     <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
                         <div class="card-body p-4 p-md-5">
                             <h1 class="mb-4 pb-2 pb-md-0 mb-md-5">Employee Registration</h1>
-                            <form method="POST" action="">
+                            <form method="POST" action="" enctype="multipart/form-data">
 
                                 <div class="row">
                                     <div class="col-md-6 mb-4">
@@ -30,8 +30,6 @@
                                             <h6 class="form-label">Name</h6>
                                             <input type="text" name="name" class="form-control form-control-lg" />
                                             <p class="error" id="name_error"></p>
-
-
                                         </div>
 
                                     </div>
@@ -235,7 +233,7 @@
 
                                         <div class="form-outline">
 
-                                            <input type="text" name="year_from" class="form-control form-control-lg" placeholder="Year From" />
+                                            <input type="date" name="year_from" class="form-control form-control-lg" placeholder="Year From" />
                                             <p class="error" id="year_from_error"></p>
 
 
@@ -290,7 +288,7 @@
                                         <h6 class="form-label">Profile Picture</h6>
                                         <div class="input-group mb-3">
 
-                                            <input type="file" class="form-control" name="avatar">
+                                            <input type="file" class="form-control" name="avatar" id="avatar">
 
                                         </div>
                                         <p class="error" id="avatar_error"></p>
@@ -328,9 +326,21 @@
 
 <?php
 
+
 if (isset($_POST['register'])) {
     extract($_POST);
     $valid = 0;
+
+    # Avatar
+
+    $target_dir = "../Upload/";
+    $target_file = $target_dir . basename($_FILES["avatar"]["name"]);
+    $fname = basename($_FILES["avatar"]["name"]);
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+
+
     # Validations
     if (empty($name)) {
         echo "
@@ -513,16 +523,52 @@ if (isset($_POST['register'])) {
     } else {
         $valid = 1;
     }
-    if (empty($avatar)) {
-        echo "
-            <script>
-                document.getElementById('avatar_error').innerText='* Please Upload Profile Picture';
-            </script>
-        ";
-        $valid = 0;
+
+    $check = getimagesize($_FILES["avatar"]["tmp_name"]);
+    if ($check !== false) {
+        $uploadOk = 1;
     } else {
-        $valid = 1;
+        echo "<script>
+                document.getElementById('avatar_error').innerText='* File is Not Image';
+            </script>";
+        $valid = 0;
+        $uploadOk = 0;
     }
+    if (file_exists($target_file)) {
+        echo "<script>  
+            document.getElementById('avatar_error').innerText='* File already exists. Please upload new file';
+            </script>";
+        $valid = 0;
+        $uploadOk = 0;
+    }
+    if ($_FILES["avatar"]["size"] > 500000) {
+        echo "<script>
+                document.getElementById('avatar_error').innerText='* File is too large';
+            </script>";
+        $valid = 0;
+        $uploadOk = 0;
+    }
+    if (
+        $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+        && $imageFileType != "gif"
+    ) {
+        echo "<script>
+            document.getElementById('avatar_error').innerText='* Sorry, only JPG, JPEG, PNG & GIF files are allowed';
+            </script>";
+        $valid = 0;
+        echo ".";
+        $uploadOk = 0;
+    }
+    if ($uploadOk == 0) {
+        echo "<script>
+            document.getElementById('avatar_error').innerText='* Sorry, your file was not uploaded.';
+            </script>";
+        $valid = 0;
+        // if everything is ok, try to upload file
+    } else {
+        move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file);
+    }
+
     if ($valid == 1) {
         include '../App/function.php';
         insert($name, $e_id, $email, $gender, $building, $street, $road, $city, $state, $pin, $blood_group, $mobile, $hobbies, $year_from, $year_to, $position, $company, $salary, $avatar);
