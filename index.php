@@ -15,8 +15,8 @@
 <body>
     <div class="container">
         <h1>Employee Management System</h1>
-        <a href="./Employees/insert.php"><button class="btn btn-success">Add Employee</button></a>
-        <a href="./Employees/display.php"><button class="btn btn-info">View Employee</button></a>
+        <a href="./Employees/insert.php"><button class="btn btn-primary">Add Employee</button></a>
+        <a href="./Employees/display.php"><button class="btn btn-warning">View Employee</button></a>
     </div>
 
     <!-- Optional JavaScript; choose one of the two! -->
