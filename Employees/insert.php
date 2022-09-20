@@ -93,8 +93,8 @@
                                     <div class="col-md-4 mb-4">
 
                                         <div class="form-outline datepicker w-100">
-                                            <input type="text" class="form-control form-control-lg" name="road" placeholder="Road" />
-                                            <p class="error" id="road_error"></p>
+                                            <input type="text" class="form-control form-control-lg" name="street" placeholder="Street" />
+                                            <p class="error" id="street_error"></p>
 
                                         </div>
 
@@ -102,12 +102,13 @@
                                     <div class="col-md-4 mb-4">
 
                                         <div class="form-outline datepicker w-100">
-                                            <input type="text" class="form-control form-control-lg" name="street" placeholder="Street" />
-                                            <p class="error" id="street_error"></p>
+                                            <input type="text" class="form-control form-control-lg" name="road" placeholder="Road" />
+                                            <p class="error" id="road_error"></p>
 
                                         </div>
 
                                     </div>
+
                                 </div>
                                 <div class="row">
                                     <div class="col-md-4 mb-4">
@@ -381,16 +382,6 @@ if (isset($_POST['register'])) {
     } else {
         $valid = 1;
     }
-    if (empty($road)) {
-        echo "
-            <script>
-                document.getElementById('road_error').innerText='* Please Enter Road';
-            </script>
-        ";
-        $valid = 0;
-    } else {
-        $valid = 1;
-    }
     if (empty($street)) {
         echo "
             <script>
@@ -401,6 +392,17 @@ if (isset($_POST['register'])) {
     } else {
         $valid = 1;
     }
+    if (empty($road)) {
+        echo "
+            <script>
+                document.getElementById('road_error').innerText='* Please Enter Road';
+            </script>
+        ";
+        $valid = 0;
+    } else {
+        $valid = 1;
+    }
+
     if (empty($city)) {
         echo "
             <script>
@@ -491,7 +493,7 @@ if (isset($_POST['register'])) {
     } else {
         $valid = 1;
     }
-    if (empty($company_name)) {
+    if (empty($company)) {
         echo "
             <script>
                 document.getElementById('company_name_error').innerText='* Please Enter Company Name';
@@ -521,10 +523,10 @@ if (isset($_POST['register'])) {
     } else {
         $valid = 1;
     }
-    // if ($valid == 1) {
-    //     include '../App/function.php';
-    //     insert($name, $e_id, $address, $gender, $email, $day, $month, $year, $hsc);
-    // }
+    if ($valid == 1) {
+        include '../App/function.php';
+        insert($name, $e_id, $email, $gender, $building, $street, $road, $city, $state, $pin, $blood_group, $mobile, $hobbies, $year_from, $year_to, $position, $company, $salary, $avatar);
+    }
 }
 
 ?>

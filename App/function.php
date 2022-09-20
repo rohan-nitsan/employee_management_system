@@ -1,10 +1,19 @@
 <?php
-function insert($fname, $lname, $address, $gender, $email, $day, $month, $year, $hsc)
+function insert($name, $e_id, $email, $gender, $building, $street, $road,  $city, $state, $pin, $blood_group, $mobile, $hobbies, $year_from, $year_to, $position, $company, $salary, $avatar)
 {
     include '../Config/connection.php';
-    $dob = $day . '-' . $month . '-' . $year;
 
-    $cmd = "INSERT INTO employee (fname,lname,address,gender,email,dob,hsc) VALUES ('$fname','$lname','$address','$gender','$email','$dob','$hsc')";
+    $address = $building . ", " . $street . ", " . $road . ", " . $city . ", " . $state . " " . "($pin)";
+    $hobbie = "";
+    foreach ($hobbies as $hob) {
+        $hobbie .= $hob . ",";
+    }
+    $cmd = "
+        INSERT INTO employee 
+        (name,employee_id,email,gender,address,blood_group,mobile_no,hobbies,year_from,year_to,position,company,salary,avatar) 
+        VALUES 
+        ('$name','$e_id','$email','$gender','$address','$blood_group','$mobile','$hobbie','$year_from','$year_to','$position','$company','$salary','$avatar')
+        ";
     $result = mysqli_query($con, $cmd) or die(mysqli_error($con));
     if ($result) {
         echo "<script>alert('Register Successful');</script>";
