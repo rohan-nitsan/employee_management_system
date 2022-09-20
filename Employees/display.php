@@ -20,14 +20,12 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Address</th>
-                    <th>Gender</th>
+                    <th>Emp. ID</th>
+                    <th>Name</th>
                     <th>Email</th>
-                    <th>DOB</th>
-                    <th>HSC(%)</th>
+                    <th>Gender</th>
+                    <th>Blood Group</th>
+                    <th>Mobile No.</th>
                     <th colspan="2">Action</th>
                 </tr>
             <tbody>

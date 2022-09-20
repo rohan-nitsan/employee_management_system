@@ -32,14 +32,12 @@ function display()
     while ($row = mysqli_fetch_array($result)) {
         $id = $row['id'];
         echo "<tr>";
-        echo "<td>" . $id . "</td>";
-        echo "<td>" . $row['fname'] . "</td>";
-        echo "<td>" . $row['lname'] . "</td>";
-        echo "<td>" . $row['address'] . "</td>";
-        echo "<td>" . ucfirst($row['gender']) . "</td>";
+        echo "<td>" . $row['employee_id'] . "</td>";
+        echo "<td>" . $row['name'] . "</td>";
         echo "<td>" . $row['email'] . "</td>";
-        echo "<td>" . $row['dob'] . "</td>";
-        echo "<td>" . $row['hsc'] . "</td>";
+        echo "<td>" . ucfirst($row['gender']) . "</td>";
+        echo "<td>" . $row['blood_group'] . "</td>";
+        echo "<td>" . $row['mobile_no'] . "</td>";
         echo "<td>" . "<a href='../Employees/edit.php?id=$id'><button class='btn btn-warning'>Edit</button></a>" . "</td>";
         echo "<td>" . "<a href='../Employees/delete.php?id=$id''><button class='btn btn-danger'>Delete</button></a>" . "</td>";
         echo "</tr>";
