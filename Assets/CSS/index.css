@@ -1,0 +1,11 @@
+body {
+  /* fallback for old browsers */
+  background: #9b59b6;
+}
+.container {
+  text-align: center;
+  margin-top: 300px;
+}
+h1 {
+  color: white;
+}
