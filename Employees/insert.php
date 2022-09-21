@@ -130,7 +130,7 @@
                                     <div class="col-md-4 mb-4">
 
                                         <div class="form-outline datepicker w-100">
-                                            <input type="text" class="form-control form-control-lg" name="pin" placeholder="Pin Code" />
+                                            <input type="number" class="form-control form-control-lg" name="pin" placeholder="Pin Code" />
                                             <p class="error" id="pin_error"></p>
 
                                         </div>
@@ -233,7 +233,7 @@
 
                                         <div class="form-outline">
 
-                                            <input type="text" name="year_from" class="form-control form-control-lg" placeholder="Year From" />
+                                            <input type="number" name="year_from" class="form-control form-control-lg" placeholder="Year From" />
                                             <p class="error" id="year_from_error"></p>
 
 
@@ -244,7 +244,7 @@
 
                                         <div class="form-outline">
 
-                                            <input type="text" name="year_to" class="form-control form-control-lg" placeholder="Year To" />
+                                            <input type="number" name="year_to" class="form-control form-control-lg" placeholder="Year To" />
                                             <p class="error" id="year_to_error"></p>
 
                                         </div>
@@ -330,7 +330,6 @@
 if (isset($_POST['register'])) {
     extract($_POST);
     $valid = 0;
-
     # Avatar
 
     $target_dir = "../Upload/";
@@ -338,6 +337,7 @@ if (isset($_POST['register'])) {
     $fname = basename($_FILES["avatar"]["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+    $avatar = basename($_FILES["avatar"]["name"]);
 
 
 
@@ -447,6 +447,13 @@ if (isset($_POST['register'])) {
             </script>
         ";
         $valid = 0;
+    } else if (strlen($pin) < 6 or strlen($pin) > 6) {
+        echo "
+        <script>
+            document.getElementById('pin_error').innerText='* Invalid Pin';
+        </script>
+    ";
+        $valid = 0;
     } else {
         $valid = 1;
     }
@@ -494,6 +501,13 @@ if (isset($_POST['register'])) {
             </script>
         ";
         $valid = 0;
+    } else if ((int)$year_from > date("Y") or strlen($year_from) < 4) {
+        echo "
+            <script>
+                document.getElementById('year_from_error').innerText='* Invalid Year';
+            </script>
+        ";
+        $valid = 0;
     } else {
         $valid = 1;
     }
@@ -504,6 +518,13 @@ if (isset($_POST['register'])) {
             </script>
         ";
         $valid = 0;
+    } else if ((int)$year_to > date("Y") or strlen($year_to) < 4) {
+        echo "
+            <script>
+                document.getElementById('year_to_error').innerText='* Invalid Year';
+            </script>
+        ";
+        $valid = 0;
     } else {
         $valid = 1;
     }
@@ -511,6 +532,13 @@ if (isset($_POST['register'])) {
         echo "
             <script>
                 document.getElementById('position_error').innerText='* Please Enter Position';
+            </script>
+        ";
+        $valid = 0;
+    } else if (!preg_match('/^([^0-9]*)$/', $position)) {
+        echo "
+            <script>
+                document.getElementById('position_error').innerText='* Only Contain Letters';
             </script>
         ";
         $valid = 0;
@@ -527,7 +555,7 @@ if (isset($_POST['register'])) {
     } else if (!preg_match('/^([^0-9]*)$/', $company)) {
         echo "
             <script>
-                document.getElementById('company_name_error').innerText='* Company Name Only Contain Letter';
+                document.getElementById('company_name_error').innerText='* Only Contain Letters';
             </script>
         ";
         $valid = 0;
@@ -535,7 +563,7 @@ if (isset($_POST['register'])) {
         $valid = 1;
     }
     if (empty($salary)) {
-        echo "
+        echo " 
             <script>
                 document.getElementById('salary_error').innerText='* Please Enter Salary';
             </script>
@@ -545,51 +573,52 @@ if (isset($_POST['register'])) {
         $valid = 1;
     }
 
-    $check = getimagesize($_FILES["avatar"]["tmp_name"]);
-    if ($check !== false) {
-        $uploadOk = 1;
-    } else {
-        echo "<script>
+    if ($avatar) {
+        $check = getimagesize($_FILES["avatar"]["tmp_name"]);
+        if ($check !== false) {
+            $uploadOk = 1;
+        } else {
+            echo "<script>
                 document.getElementById('avatar_error').innerText='* File is Not Image';
             </script>";
-        $valid = 0;
-        $uploadOk = 0;
-    }
-    if (file_exists($target_file)) {
-        echo "<script>  
-            document.getElementById('avatar_error').innerText='* File already exists. Please upload new file';
+            $valid = 0;
+            $uploadOk = 0;
+        }
+        if (file_exists($target_file)) {
+            echo "<script>  
+            document.getElementById('avatar_error').innerText='* File already exists. Please upload file with different name';
             </script>";
-        $valid = 0;
-        $uploadOk = 0;
-    }
-    if ($_FILES["avatar"]["size"] > 500000) {
-        echo "<script>
+            $valid = 0;
+            $uploadOk = 0;
+        }
+        if ($_FILES["avatar"]["size"] > 500000) {
+            echo "<script>
                 document.getElementById('avatar_error').innerText='* File is too large';
             </script>";
-        $valid = 0;
-        $uploadOk = 0;
-    }
-    if (
-        $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-        && $imageFileType != "gif"
-    ) {
-        echo "<script>
+            $valid = 0;
+            $uploadOk = 0;
+        }
+        if (
+            $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+            && $imageFileType != "gif"
+        ) {
+            echo "<script>
             document.getElementById('avatar_error').innerText='* Sorry, only JPG, JPEG, PNG & GIF files are allowed';
             </script>";
-        $valid = 0;
-        echo ".";
-        $uploadOk = 0;
-    }
-    if ($uploadOk == 0) {
-        echo "<script>
-            document.getElementById('avatar_error').innerText='* Sorry, your file was not uploaded.';
-            </script>";
-        $valid = 0;
-        // if everything is ok, try to upload file
+            $valid = 0;
+            echo ".";
+            $uploadOk = 0;
+        }
+        if ($uploadOk == 1) {
+            $valid = 1;
+            move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file);
+        }
     } else {
-        move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file);
+        echo "<script>
+        document.getElementById('avatar_error').innerText='* Please Upload Profile Picture.';
+        </script>";
+        $valid = 0;
     }
-
     if ($valid == 1) {
         include '../App/function.php';
         insert($name, $e_id, $email, $gender, $building, $street, $road, $city, $state, $pin, $blood_group, $mobile, $hobbies, $year_from, $year_to, $position, $company, $salary, $avatar);

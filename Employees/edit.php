@@ -28,7 +28,7 @@ $data = edit($id);
                     <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
                         <div class="card-body p-4 p-md-5">
                             <h1 class="mb-4 pb-2 pb-md-0 mb-md-5">Employee Registration</h1>
-                            <form method="POST" action="">
+                            <form method="POST" action="" enctype="multipart/form-data">
 
                                 <div class="row">
                                     <div class="col-md-6 mb-4">
@@ -495,7 +495,7 @@ $data = edit($id);
                                         <h6 class="form-label">Profile Picture</h6>
                                         <div class="input-group mb-3">
 
-                                            <input type="file" class="form-control" name="avatar" value="<?php echo $data['avatar']; ?>">
+                                            <input type="file" class="form-control" name="avatar" value="Hii">
 
                                         </div>
                                         <p class="error" id="avatar_error"></p>
@@ -537,158 +537,298 @@ $data = edit($id);
 
 if (isset($_POST['update'])) {
     extract($_POST);
+    $valid = 0;
+    # Avatar
+
+    $target_dir = "../Upload/";
+    $target_file = $target_dir . basename($_FILES["avatar"]["name"]);
+    $fname = basename($_FILES["avatar"]["name"]);
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+    $avatar = basename($_FILES["avatar"]["name"]);
+
+
 
     # Validations
-    if (isset($_POST['update'])) {
-        extract($_POST);
+    if (empty($name)) {
+        echo "
+            <script>
+                document.getElementById('name_error').innerText='* Please Enter Name';
+            </script>
+        ";
         $valid = 0;
-        # Validations
-        if (empty($name)) {
-            echo "
-                <script>
-                    document.getElementById('name_error').innerText='* Please Enter Name';
-                </script>
-            ";
-            $valid = 0;
-        } else {
-            $valid = 1;
-        }
-        if (empty($e_id)) {
-            echo "
-                <script>
-                    document.getElementById('e_id_error').innerText='* Please Enter Employee ID';
-                </script>
-            ";
-            $valid = 0;
-        } else {
-            $valid = 1;
-        }
-        if (empty($email)) {
-            echo "
-                <script>
-                    document.getElementById('email_error').innerText='* Please Enter Email';
-                </script>
-            ";
-            $valid = 0;
-        } else {
-            $valid = 1;
-        }
-        if (empty($gender)) {
-            echo "
-                <script>
-                    document.getElementById('gender_error').innerText='* Please Select Gender';
-                </script>
-            ";
-            $valid = 0;
-        } else {
-            $valid = 1;
-        }
-        if (empty($address)) {
-            echo "
-                <script>
-                    document.getElementById('address_error').innerText='* Please Enter Address';
-                </script>
-            ";
-            $valid = 0;
-        } else {
-            $valid = 1;
-        }
+    } else {
+        $valid = 1;
+    }
+    if (empty($e_id)) {
+        echo "
+            <script>
+                document.getElementById('e_id_error').innerText='* Please Enter Employee ID';
+            </script>
+        ";
+        $valid = 0;
+    } else {
+        $valid = 1;
+    }
+    if (empty($email)) {
+        echo "
+            <script>
+                document.getElementById('email_error').innerText='* Please Enter Email';
+            </script>
+        ";
+        $valid = 0;
+    } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo "
+        <script>
+            document.getElementById('email_error').innerText='* Please Enter Valid Email';
+        </script>
+        ";
+        $valid = 0;
+    } else {
+        $valid = 1;
+    }
+    if (empty($gender)) {
+        echo "
+            <script>
+                document.getElementById('gender_error').innerText='* Please Select Gender';
+            </script>
+        ";
+        $valid = 0;
+    } else {
+        $valid = 1;
+    }
+    if (empty($building)) {
+        echo "
+            <script>
+                document.getElementById('building_error').innerText='* Please Enter Building';
+            </script>
+        ";
+        $valid = 0;
+    } else {
+        $valid = 1;
+    }
+    if (empty($street)) {
+        echo "
+            <script>
+                document.getElementById('street_error').innerText='* Please Enter Street';
+            </script>
+        ";
+        $valid = 0;
+    } else {
+        $valid = 1;
+    }
+    if (empty($road)) {
+        echo "
+            <script>
+                document.getElementById('road_error').innerText='* Please Enter Road';
+            </script>
+        ";
+        $valid = 0;
+    } else {
+        $valid = 1;
+    }
 
+    if (empty($city)) {
+        echo "
+            <script>
+                document.getElementById('city_error').innerText='* Please Enter City';
+            </script>
+        ";
+        $valid = 0;
+    } else {
+        $valid = 1;
+    }
+    if (empty($state)) {
+        echo "
+            <script>
+                document.getElementById('state_error').innerText='* Please Enter State';
+            </script>
+        ";
+        $valid = 0;
+    } else {
+        $valid = 1;
+    }
+    if (empty($pin)) {
+        echo "
+            <script>
+                document.getElementById('pin_error').innerText='* Please Enter Pin Code';
+            </script>
+        ";
+        $valid = 0;
+    } else if (strlen($pin) < 6 or strlen($pin) > 6) {
+        echo "
+        <script>
+            document.getElementById('pin_error').innerText='* Invalid Pin';
+        </script>
+    ";
+        $valid = 0;
+    } else {
+        $valid = 1;
+    }
+    if (empty($blood_group)) {
+        echo "
+            <script>
+                document.getElementById('blood_group_error').innerText='* Please Select Blood Group';
+            </script>
+        ";
+        $valid = 0;
+    } else {
+        $valid = 1;
+    }
+    if (empty($mobile)) {
+        echo "
+            <script>
+                document.getElementById('mobile_error').innerText='* Please Enter Mobile Number';
+            </script>
+        ";
+        $valid = 0;
+    } else if (!preg_match('/^[0-9]{10}+$/', $mobile)) {
+        echo "
+        <script>
+            document.getElementById('mobile_error').innerText='* Please Enter Valid Mobile Number';
+        </script>
+        ";
+        $valid = 0;
+    } else {
+        $valid = 1;
+    }
+    if (empty($hobbies) or count($hobbies) < 2) {
+        echo "
+            <script>
+                document.getElementById('hobbies_error').innerText='* Please Select Any 2 Hobbies';
+            </script>
+        ";
+        $valid = 0;
+    } else {
+        $valid = 1;
+    }
+    if (empty($year_from)) {
+        echo "
+            <script>
+                document.getElementById('year_from_error').innerText='* Please Enter Year From';
+            </script>
+        ";
+        $valid = 0;
+    } else if ((int)$year_from > date("Y") or strlen($year_from) < 4) {
+        echo "
+            <script>
+                document.getElementById('year_from_error').innerText='* Invalid Year';
+            </script>
+        ";
+        $valid = 0;
+    } else {
+        $valid = 1;
+    }
+    if (empty($year_to)) {
+        echo "
+            <script>
+                document.getElementById('year_to_error').innerText='* Please Enter Year To';
+            </script>
+        ";
+        $valid = 0;
+    } else if ((int)$year_to > date("Y") or strlen($year_to) < 4) {
+        echo "
+            <script>
+                document.getElementById('year_to_error').innerText='* Invalid Year';
+            </script>
+        ";
+        $valid = 0;
+    } else {
+        $valid = 1;
+    }
+    if (empty($position)) {
+        echo "
+            <script>
+                document.getElementById('position_error').innerText='* Please Enter Position';
+            </script>
+        ";
+        $valid = 0;
+    } else if (!preg_match('/^([^0-9]*)$/', $position)) {
+        echo "
+            <script>
+                document.getElementById('position_error').innerText='* Only Contain Letters';
+            </script>
+        ";
+        $valid = 0;
+    } else {
+        $valid = 1;
+    }
+    if (empty($company)) {
+        echo "
+            <script>
+                document.getElementById('company_name_error').innerText='* Please Enter Company Name';
+            </script>
+        ";
+        $valid = 0;
+    } else if (!preg_match('/^([^0-9]*)$/', $company)) {
+        echo "
+            <script>
+                document.getElementById('company_name_error').innerText='* Only Contain Letters';
+            </script>
+        ";
+        $valid = 0;
+    } else {
+        $valid = 1;
+    }
+    if (empty($salary)) {
+        echo " 
+            <script>
+                document.getElementById('salary_error').innerText='* Please Enter Salary';
+            </script>
+        ";
+        $valid = 0;
+    } else {
+        $valid = 1;
+    }
 
-
-        if (empty($blood_group)) {
-            echo "
-                <script>
-                    document.getElementById('blood_group_error').innerText='* Please Select Blood Group';
-                </script>
-            ";
-            $valid = 0;
+    if ($avatar) {
+        $check = getimagesize($_FILES["avatar"]["tmp_name"]);
+        if ($check !== false) {
+            $uploadOk = 1;
         } else {
-            $valid = 1;
-        }
-        if (empty($mobile)) {
-            echo "
-                <script>
-                    document.getElementById('mobile_error').innerText='* Please Enter Mobile Number';
-                </script>
-            ";
+            echo "<script>
+                document.getElementById('avatar_error').innerText='* File is Not Image';
+            </script>";
             $valid = 0;
-        } else {
-            $valid = 1;
+            $uploadOk = 0;
         }
-        if (empty($hobbies) or count($hobbies) < 2) {
-            echo "
-                <script>
-                    document.getElementById('hobbies_error').innerText='* Please Select Any 2 Hobbies';
-                </script>
-            ";
+        if (file_exists($target_file)) {
+            echo "<script>  
+            document.getElementById('avatar_error').innerText='* File already exists. Please upload file with different name';
+            </script>";
             $valid = 0;
-        } else {
-            $valid = 1;
+            $uploadOk = 0;
         }
-        if (empty($year_from)) {
-            echo "
-                <script>
-                    document.getElementById('year_from_error').innerText='* Please Enter Year From';
-                </script>
-            ";
+        if ($_FILES["avatar"]["size"] > 500000) {
+            echo "<script>
+                document.getElementById('avatar_error').innerText='* File is too large';
+            </script>";
             $valid = 0;
-        } else {
-            $valid = 1;
+            $uploadOk = 0;
         }
-        if (empty($year_to)) {
-            echo "
-                <script>
-                    document.getElementById('year_to_error').innerText='* Please Enter Year To';
-                </script>
-            ";
+        if (
+            $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+            && $imageFileType != "gif"
+        ) {
+            echo "<script>
+            document.getElementById('avatar_error').innerText='* Sorry, only JPG, JPEG, PNG & GIF files are allowed';
+            </script>";
             $valid = 0;
-        } else {
+            echo ".";
+            $uploadOk = 0;
+        }
+        if ($uploadOk == 1) {
             $valid = 1;
+            move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file);
         }
-        if (empty($position)) {
-            echo "
-                <script>
-                    document.getElementById('position_error').innerText='* Please Enter Position';
-                </script>
-            ";
-            $valid = 0;
-        } else {
-            $valid = 1;
-        }
-        if (empty($company)) {
-            echo "
-                <script>
-                    document.getElementById('company_name_error').innerText='* Please Enter Company Name';
-                </script>
-            ";
-            $valid = 0;
-        } else {
-            $valid = 1;
-        }
-        if (empty($salary)) {
-            echo "
-                <script>
-                    document.getElementById('salary_error').innerText='* Please Enter Salary';
-                </script>
-            ";
-            $valid = 0;
-        } else {
-            $valid = 1;
-        }
-        if (empty($avatar)) {
-            echo "
-                <script>
-                    document.getElementById('avatar_error').innerText='* Please Upload Profile Picture';
-                </script>
-            ";
-            $valid = 0;
-        } else {
-            $valid = 1;
-        }
-        if ($valid == 1) {
-            update($id, $name, $e_id, $email, $gender, $address, $blood_group, $mobile, $hobbies, $year_from, $year_to, $position, $company, $salary, $avatar);
-        }
+    } else {
+        echo "<script>
+        document.getElementById('avatar_error').innerText='* Please Upload Profile Picture.';
+        </script>";
+        $valid = 0;
+    }
+    if ($valid == 1) {
+        update($id, $name, $e_id, $email, $gender, $address, $blood_group, $mobile, $hobbies, $year_from, $year_to, $position, $company, $salary, $avatar);
     }
 }
 ?>
