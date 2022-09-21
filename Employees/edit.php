@@ -32,90 +32,48 @@ $data = edit($id);
 
                                 <div class="row">
                                     <div class="col-md-6 mb-4">
-
                                         <div class="form-outline">
                                             <h6 class="form-label">Name</h6>
                                             <input type="text" name="name" class="form-control form-control-lg" value="<?php echo $data['name']; ?>" />
                                             <p class="error" id="name_error"></p>
-
-
                                         </div>
-
                                     </div>
                                     <div class="col-md-6 mb-4">
-
                                         <div class="form-outline">
                                             <h6 class="form-label">Employee ID</h6>
                                             <input type="text" name="e_id" class="form-control form-control-lg" value="<?php echo $data['employee_id']; ?>" />
                                             <p class="error" id="e_id_error"></p>
-
                                         </div>
-
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 mb-4 pb-2">
-
                                         <div class="form-outline">
                                             <h6 class="form-label">Email</h6>
                                             <input type="email" name="email" class="form-control form-control-lg" value="<?php echo $data['email']; ?>" />
                                             <p class="error" id="email_error"></p>
                                         </div>
-
                                     </div>
                                     <div class="col-md-6 mb-4">
-
                                         <h6 class="mb-2 pb-1">Gender </h6>
-
-                                        <?php
-
-                                        if ($data['gender'] == "male") {
-                                            echo '        
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="gender" value="male" checked/>
-                                                <label class="form-check-label">Male</label>
-                                            </div>
-                                                ';
-                                        } else {
-                                            echo '        
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="gender" value="male"/>
-                                                <label class="form-check-label">Male</label>
-                                            </div>
-                                                ';
-                                        }
-                                        if ($data['gender'] == "female") {
-                                            echo '        
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="gender" value="female" checked/>
-                                                <label class="form-check-label">Female</label>
-                                            </div>
-                                                ';
-                                        } else {
-                                            echo '        
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="gender" value="female"/>
-                                                <label class="form-check-label">Female</label>
-                                            </div>
-                                                ';
-                                        }
-                                        if ($data['gender'] == "other") {
-                                            echo '
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="gender" value="other" checked />
-                                                <label class="form-check-label">Other</label>
-                                            </div>
-                                            ';
-                                        } else {
-                                            echo '
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="gender" value="other" />
-                                                <label class="form-check-label">Other</label>
-                                            </div>
-                                            ';
-                                        }
-                                        ?>
-
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="gender" value="male" <?php if ($data['gender'] == "male") {
+                                                                                                                        echo "checked";
+                                                                                                                    } ?> />
+                                            <label class="form-check-label">Male</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="gender" value="female" <?php if ($data['gender'] == "female") {
+                                                                                                                            echo "checked";
+                                                                                                                        } ?> />
+                                            <label class="form-check-label">Female</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="gender" value="other" <?php if ($data['gender'] == "other") {
+                                                                                                                            echo "checked";
+                                                                                                                        } ?> />
+                                            <label class="form-check-label">Other</label>
+                                        </div>
                                         <p class="error" id="gender_error"></p>
 
                                     </div>
@@ -140,158 +98,72 @@ $data = edit($id);
 
                                         <div class="form-outline">
                                             <h6 class="form-label">Blood Group</h6>
-                                            <?php
-
-                                            if ($data['blood_group'] == "A+") {
-                                                echo "
-                                                    <div class='form-check form-check-inline'>
-                                                        <input class='form-check-input' type='radio' name='blood_group' value='A+' checked>
-                                                        <label class='form-check-label'>A+</label>
-                                                    </div>
-                                                    ";
-                                            } else {
-                                                echo "
-                                                    <div class='form-check form-check-inline'>
-                                                        <input class='form-check-input' type='radio' name='blood_group' value='A+' >
-                                                        <label class='form-check-label'>A+</label>
-                                                    </div>
-                                                    ";
-                                            }
-                                            if ($data['blood_group'] == "A-") {
-                                                echo "
-                                                    <div class='form-check form-check-inline'>
-                                                        <input class='form-check-input' type='radio' name='blood_group' value='A-' checked>
-                                                        <label class='form-check-label'>A-</label>
-                                                    </div>
-                                                    ";
-                                            } else {
-                                                echo "
-                                                    <div class='form-check form-check-inline'>
-                                                        <input class='form-check-input' type='radio' name='blood_group' value='A-' >
-                                                        <label class='form-check-label'>A-</label>
-                                                    </div>
-                                                    ";
-                                            }
-                                            if ($data['blood_group'] == "B+") {
-                                                echo "
-                                                    <div class='form-check form-check-inline'>
-                                                        <input class='form-check-input' type='radio' name='blood_group' value='B+' checked>
-                                                        <label class='form-check-label'>B+</label>
-                                                    </div>
-                                                    ";
-                                            } else {
-                                                echo "
-                                                    <div class='form-check form-check-inline'>
-                                                        <input class='form-check-input' type='radio' name='blood_group' value='B+' >
-                                                        <label class='form-check-label'>B+</label>
-                                                    </div>
-                                                    ";
-                                            }
-                                            if ($data['blood_group'] == "B-") {
-                                                echo "
-                                                    <div class='form-check form-check-inline'>
-                                                        <input class='form-check-input' type='radio' name='blood_group' value='B-' checked>
-                                                        <label class='form-check-label'>B-</label>
-                                                    </div>
-                                                    ";
-                                            } else {
-                                                echo "
-                                                    <div class='form-check form-check-inline'>
-                                                        <input class='form-check-input' type='radio' name='blood_group' value='B-' >
-                                                        <label class='form-check-label'>B-</label>
-                                                    </div>
-                                                    ";
-                                            }
-                                            if ($data['blood_group'] == "O+") {
-                                                echo "
-                                                    <div class='form-check form-check-inline'>
-                                                        <input class='form-check-input' type='radio' name='blood_group' value='O+' checked>
-                                                        <label class='form-check-label'>O+</label>
-                                                    </div>
-                                                    ";
-                                            } else {
-                                                echo "
-                                                    <div class='form-check form-check-inline'>
-                                                        <input class='form-check-input' type='radio' name='blood_group' value='O+' >
-                                                        <label class='form-check-label'>O+</label>
-                                                    </div>
-                                                    ";
-                                            }
-                                            if ($data['blood_group'] == "O-") {
-                                                echo "
-                                                    <div class='form-check form-check-inline'>
-                                                        <input class='form-check-input' type='radio' name='blood_group' value='O-' checked>
-                                                        <label class='form-check-label'>O-</label>
-                                                    </div>
-                                                    ";
-                                            } else {
-                                                echo "
-                                                    <div class='form-check form-check-inline'>
-                                                        <input class='form-check-input' type='radio' name='blood_group' value='O-' >
-                                                        <label class='form-check-label'>O-</label>
-                                                    </div>
-                                                    ";
-                                            }
-                                            if ($data['blood_group'] == "AB+") {
-                                                echo "
-                                                    <div class='form-check form-check-inline'>
-                                                        <input class='form-check-input' type='radio' name='blood_group' value='AB+' checked>
-                                                        <label class='form-check-label'>AB+</label>
-                                                    </div>
-                                                    ";
-                                            } else {
-                                                echo "
-                                                    <div class='form-check form-check-inline'>
-                                                        <input class='form-check-input' type='radio' name='blood_group' value='AB+' >
-                                                        <label class='form-check-label'>AB+</label>
-                                                    </div>
-                                                    ";
-                                            }
-                                            if ($data['blood_group'] == "AB-") {
-                                                echo "
-                                                    <div class='form-check form-check-inline'>
-                                                        <input class='form-check-input' type='radio' name='blood_group' value='AB-' checked>
-                                                        <label class='form-check-label'>AB-</label>
-                                                    </div>
-                                                    ";
-                                            } else {
-                                                echo "
-                                                    <div class='form-check form-check-inline'>
-                                                        <input class='form-check-input' type='radio' name='blood_group' value='AB-' >
-                                                        <label class='form-check-label'>AB-</label>
-                                                    </div>
-                                                    ";
-                                            }
-
-
-                                            ?>
-
-
-
+                                            <div class='form-check form-check-inline'>
+                                                <input class='form-check-input' type='radio' name='blood_group' value='A+' <?php if ($data['blood_group'] == "A+") {
+                                                                                                                                echo "checked";
+                                                                                                                            } ?>>
+                                                <label class='form-check-label'>A+</label>
+                                            </div>
+                                            <div class='form-check form-check-inline'>
+                                                <input class='form-check-input' type='radio' name='blood_group' value='A-' <?php if ($data['blood_group'] == "A-") {
+                                                                                                                                echo "checked";
+                                                                                                                            } ?>>
+                                                <label class='form-check-label'>A-</label>
+                                            </div>
+                                            <div class='form-check form-check-inline'>
+                                                <input class='form-check-input' type='radio' name='blood_group' value='B+' <?php if ($data['blood_group'] == "B+") {
+                                                                                                                                echo "checked";
+                                                                                                                            } ?>>
+                                                <label class='form-check-label'>B+</label>
+                                            </div>
+                                            <div class='form-check form-check-inline'>
+                                                <input class='form-check-input' type='radio' name='blood_group' value='B-' <?php if ($data['blood_group'] == "B-") {
+                                                                                                                                echo "checked";
+                                                                                                                            } ?>>
+                                                <label class='form-check-label'>B-</label>
+                                            </div>
+                                            <div class='form-check form-check-inline'>
+                                                <input class='form-check-input' type='radio' name='blood_group' value='O+' <?php if ($data['blood_group'] == "O+") {
+                                                                                                                                echo "checked";
+                                                                                                                            } ?>>
+                                                <label class='form-check-label'>O+</label>
+                                            </div>
+                                            <div class='form-check form-check-inline'>
+                                                <input class='form-check-input' type='radio' name='blood_group' value='O-' <?php if ($data['blood_group'] == "O-") {
+                                                                                                                                echo "checked";
+                                                                                                                            } ?>>
+                                                <label class='form-check-label'>O-</label>
+                                            </div>
+                                            <div class='form-check form-check-inline'>
+                                                <input class='form-check-input' type='radio' name='blood_group' value='AB+' <?php if ($data['blood_group'] == "AB+") {
+                                                                                                                                echo "checked";
+                                                                                                                            } ?>>
+                                                <label class='form-check-label'>AB+</label>
+                                            </div>
+                                            <div class='form-check form-check-inline'>
+                                                <input class='form-check-input' type='radio' name='blood_group' value='AB-' <?php if ($data['blood_group'] == "AB-") {
+                                                                                                                                echo "checked";
+                                                                                                                            } ?>>
+                                                <label class='form-check-label'>AB-</label>
+                                            </div>
                                             <p class="error" id="blood_group_error"></p>
-
 
                                         </div>
 
                                     </div>
                                     <div class="col-md-6 mb-4">
-
                                         <div class="form-outline">
                                             <h6 class="form-label">Mobile Number</h6>
                                             <input type="text" name="mobile" class="form-control form-control-lg" value="<?php echo $data['mobile_no']; ?>" />
                                             <p class="error" id="mobile_error"></p>
-
                                         </div>
-
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12 mb-4">
-
                                         <?php
                                         $myHobbies = explode(',', $data['hobbies']);
                                         ?>
-
                                         <div class="form-outline">
                                             <h6 class="form-label">Hobbies</h6>
                                             <div class="form-check form-check-inline">
@@ -334,180 +206,58 @@ $data = edit($id);
                                                                                                                                     } ?>>
                                                 <label class="form-check-label">Traveling</label>
                                             </div>
-
-                                            <?php
-
-
-
-                                            // if ($hob == 'cricket') {
-                                            //     echo '
-                                            //         <div class="form-check form-check-inline">
-                                            //             <input class="form-check-input" type="checkbox" name="hobbies[]" value="cricket" checked>
-                                            //             <label class="form-check-label">Cricket</label>
-                                            //         </div>
-                                            //         ';
-
-                                            // } else {
-                                            //     echo '
-                                            //         <div class="form-check form-check-inline">
-                                            //             <input class="form-check-input" type="checkbox" name="hobbies[]" value="cricket">
-                                            //             <label class="form-check-label">Cricket</label>
-                                            //         </div>
-                                            //         ';
-                                            // }
-                                            // if ($hob == 'reading') {
-                                            //     echo '
-                                            //         <div class="form-check form-check-inline">
-                                            //             <input class="form-check-input" type="checkbox" name="hobbies[]" value="reading" checked>
-                                            //             <label class="form-check-label">Reading</label>
-                                            //         </div>
-                                            //         ';
-                                            //         break;
-                                            // } else {
-                                            //     echo '
-                                            //         <div class="form-check form-check-inline">
-                                            //             <input class="form-check-input" type="checkbox" name="hobbies[]" value="reading" >
-                                            //             <label class="form-check-label">Reading</label>
-                                            //         </div>
-                                            //         ';
-                                            // }
-                                            // if ($hob == 'music') {
-                                            //     echo '
-                                            //     <div class="form-check form-check-inline">
-                                            //         <input class="form-check-input" type="checkbox" name="hobbies[]" value="music" checked>
-                                            //         <label class="form-check-label">Music</label>
-                                            //     </div>
-                                            //     ';
-                                            //     break;
-                                            // } else {
-                                            //     echo '
-                                            //     <div class="form-check form-check-inline">
-                                            //         <input class="form-check-input" type="checkbox" name="hobbies[]" value="music" >
-                                            //         <label class="form-check-label">Music</label>
-                                            //     </div>
-                                            //     ';
-                                            // }
-                                            // if ($hob == "e-games") {
-                                            //     echo '
-                                            //     <div class="form-check form-check-inline">
-                                            //         <input class="form-check-input" type="checkbox" name="hobbies[]" value="e-games" checked>
-                                            //         <label class="form-check-label">E-Games</label>
-                                            //     </div>
-                                            //     ';
-                                            //     break;
-                                            // } else {
-                                            //     echo '
-                                            //     <div class="form-check form-check-inline">
-                                            //         <input class="form-check-input" type="checkbox" name="hobbies[]" value="e-games" >
-                                            //         <label class="form-check-label">E-Games</label>
-                                            //     </div>
-                                            //     ';
-                                            // }
-                                            // if ($hob == "traveling") {
-                                            //     echo '
-                                            //     <div class="form-check form-check-inline">
-                                            //         <input class="form-check-input" type="checkbox" name="hobbies[]" value="traveling" checked>
-                                            //         <label class="form-check-label">Traveling</label>
-                                            //     </div>
-                                            //     ';
-                                            //     break;
-                                            // } else {
-                                            //     echo '
-                                            //     <div class="form-check form-check-inline">
-                                            //         <input class="form-check-input" type="checkbox" name="hobbies[]" value="traveling">
-                                            //         <label class="form-check-label">Traveling</label>
-                                            //     </div>
-                                            //     ';
-                                            // }
-
-
-
-                                            ?>
-
-
-
                                             <p class="error" id="hobbies_error"></p>
-
-
                                         </div>
-
                                     </div>
-
                                 </div>
                                 <div class="row">
                                     <h6 class="form-label">Experience</h6>
                                     <div class="col-md-4 mb-4">
-
                                         <div class="form-outline">
-
                                             <input type="text" name="year_from" class="form-control form-control-lg" placeholder="Year From" value="<?php echo $data['year_from']; ?>" />
                                             <p class="error" id="year_from_error"></p>
-
-
                                         </div>
-
                                     </div>
                                     <div class="col-md-4 mb-4">
-
                                         <div class="form-outline">
-
                                             <input type="text" name="year_to" class="form-control form-control-lg" placeholder="Year To" value="<?php echo $data['year_to']; ?>" />
                                             <p class="error" id="year_to_error"></p>
-
                                         </div>
-
                                     </div>
                                     <div class="col-md-4 mb-4">
-
                                         <div class="form-outline">
-
                                             <input type="text" name="position" class="form-control form-control-lg" placeholder="Position" value="<?php echo $data['position']; ?>" />
                                             <p class="error" id="position_error"></p>
-
                                         </div>
-
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 mb-4">
-
                                         <div class="form-outline">
-
                                             <input type="text" name="company" class="form-control form-control-lg" placeholder="Company Name" value="<?php echo $data['company']; ?>" />
                                             <p class="error" id="company_name_error"></p>
-
                                         </div>
-
                                     </div>
                                     <div class="col-md-6 mb-4">
-
                                         <div class="form-outline">
-
                                             <input type="number" name="salary" class="form-control form-control-lg" placeholder="Salary" value="<?php echo $data['salary']; ?>" />
                                             <p class="error" id="salary_error"></p>
-
                                         </div>
-
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12 mb-4">
                                         <h6 class="form-label">Profile Picture</h6>
                                         <div class="input-group mb-3">
-
                                             <input type="file" class="form-control" name="avatar" value="Hii">
-
                                         </div>
                                         <p class="error" id="avatar_error"></p>
                                     </div>
                                 </div>
-
-
                                 <div class=" mt-4 pt-2">
                                     <input type="submit" name="update" class="btn btn-primary btn-lg" id="" value="Update">
                                     <input class="btn btn-danger btn-lg" type="reset" value="Reset" />
                                 </div>
-
                             </form>
                         </div>
                     </div>
@@ -537,273 +287,108 @@ $data = edit($id);
 
 if (isset($_POST['update'])) {
     extract($_POST);
-    $valid = 0;
+    $valid = 1;
     # Avatar
 
     $target_dir = "../Upload/";
     $target_file = $target_dir . basename($_FILES["avatar"]["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+    $avatar = "";
     if ($_FILES["avatar"]["name"]) {
         $avatar = basename($_FILES["avatar"]["name"]);
     }
 
-
-
     # Validations
     if (empty($name)) {
-        echo "
-            <script>
-                document.getElementById('name_error').innerText='* Please Enter Name';
-            </script>
-        ";
+        validation_error('name_error', '* Please Enter Name');
         $valid = 0;
-    } else {
-        $valid = 1;
+    } else if (!preg_match('/^([^0-9]*)$/', $name)) {
+        validation_error('name_error', '* Only Contain Letters');
+        $valid = 0;
     }
     if (empty($e_id)) {
-        echo "
-            <script>
-                document.getElementById('e_id_error').innerText='* Please Enter Employee ID';
-            </script>
-        ";
+        validation_error('e_id_error', '* Please Enter Employee ID');
         $valid = 0;
-    } else {
-        $valid = 1;
     }
     if (empty($email)) {
-        echo "
-            <script>
-                document.getElementById('email_error').innerText='* Please Enter Email';
-            </script>
-        ";
+        validation_error('email_error', '* Please Enter Email');
         $valid = 0;
     } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo "
-        <script>
-            document.getElementById('email_error').innerText='* Please Enter Valid Email';
-        </script>
-        ";
+        validation_error('email_error', '* Please Enter Valid Email');
         $valid = 0;
-    } else {
-        $valid = 1;
     }
     if (empty($gender)) {
-        echo "
-            <script>
-                document.getElementById('gender_error').innerText='* Please Select Gender';
-            </script>
-        ";
+        validation_error('gender_error', '* Please Select Gender');
         $valid = 0;
-    } else {
-        $valid = 1;
     }
-    if (empty($building)) {
-        echo "
-            <script>
-                document.getElementById('building_error').innerText='* Please Enter Building';
-            </script>
-        ";
+    if (empty($address)) {
+        validation_error('address_error', '* Please Enter Address');
         $valid = 0;
-    } else {
-        $valid = 1;
-    }
-    if (empty($street)) {
-        echo "
-            <script>
-                document.getElementById('street_error').innerText='* Please Enter Street';
-            </script>
-        ";
-        $valid = 0;
-    } else {
-        $valid = 1;
-    }
-    if (empty($road)) {
-        echo "
-            <script>
-                document.getElementById('road_error').innerText='* Please Enter Road';
-            </script>
-        ";
-        $valid = 0;
-    } else {
-        $valid = 1;
-    }
-
-    if (empty($city)) {
-        echo "
-            <script>
-                document.getElementById('city_error').innerText='* Please Enter City';
-            </script>
-        ";
-        $valid = 0;
-    } else {
-        $valid = 1;
-    }
-    if (empty($state)) {
-        echo "
-            <script>
-                document.getElementById('state_error').innerText='* Please Enter State';
-            </script>
-        ";
-        $valid = 0;
-    } else {
-        $valid = 1;
-    }
-    if (empty($pin)) {
-        echo "
-            <script>
-                document.getElementById('pin_error').innerText='* Please Enter Pin Code';
-            </script>
-        ";
-        $valid = 0;
-    } else if (strlen($pin) < 6 or strlen($pin) > 6) {
-        echo "
-        <script>
-            document.getElementById('pin_error').innerText='* Invalid Pin';
-        </script>
-    ";
-        $valid = 0;
-    } else {
-        $valid = 1;
     }
     if (empty($blood_group)) {
-        echo "
-            <script>
-                document.getElementById('blood_group_error').innerText='* Please Select Blood Group';
-            </script>
-        ";
+        validation_error('blood_group_error', '* Please Select Blood Group');
         $valid = 0;
-    } else {
-        $valid = 1;
     }
     if (empty($mobile)) {
-        echo "
-            <script>
-                document.getElementById('mobile_error').innerText='* Please Enter Mobile Number';
-            </script>
-        ";
+        validation_error('mobile_error', '* Please Enter Mobile Number');
         $valid = 0;
     } else if (!preg_match('/^[0-9]{10}+$/', $mobile)) {
-        echo "
-        <script>
-            document.getElementById('mobile_error').innerText='* Please Enter Valid Mobile Number';
-        </script>
-        ";
+        validation_error('mobile_error', '* Please Enter Valid Mobile Number');
         $valid = 0;
-    } else {
-        $valid = 1;
     }
     if (empty($hobbies) or count($hobbies) < 2) {
-        echo "
-            <script>
-                document.getElementById('hobbies_error').innerText='* Please Select Any 2 Hobbies';
-            </script>
-        ";
+        validation_error('hobbies_error', '* Please Select Any 2 Hobbies');
         $valid = 0;
-    } else {
-        $valid = 1;
     }
     if (empty($year_from)) {
-        echo "
-            <script>
-                document.getElementById('year_from_error').innerText='* Please Enter Year From';
-            </script>
-        ";
+        validation_error('year_from_error', '* Please Enter Year From');
         $valid = 0;
     } else if ((int)$year_from > date("Y") or strlen($year_from) < 4) {
-        echo "
-            <script>
-                document.getElementById('year_from_error').innerText='* Invalid Year';
-            </script>
-        ";
+        validation_error('year_from_error', '* Invalid Year');
         $valid = 0;
-    } else {
-        $valid = 1;
     }
     if (empty($year_to)) {
-        echo "
-            <script>
-                document.getElementById('year_to_error').innerText='* Please Enter Year To';
-            </script>
-        ";
+        validation_error('year_to_error', '* Please Enter Year To');
         $valid = 0;
     } else if ((int)$year_to > date("Y") or strlen($year_to) < 4) {
-        echo "
-            <script>
-                document.getElementById('year_to_error').innerText='* Invalid Year';
-            </script>
-        ";
+        validation_error('year_to_error', '* Invalid Year');
         $valid = 0;
-    } else {
-        $valid = 1;
     }
     if (empty($position)) {
-        echo "
-            <script>
-                document.getElementById('position_error').innerText='* Please Enter Position';
-            </script>
-        ";
+        validation_error('position_error', '* Please Enter Position');
         $valid = 0;
     } else if (!preg_match('/^([^0-9]*)$/', $position)) {
-        echo "
-            <script>
-                document.getElementById('position_error').innerText='* Only Contain Letters';
-            </script>
-        ";
+        validation_error('position_error', '* Only Contain Letters');
         $valid = 0;
-    } else {
-        $valid = 1;
     }
     if (empty($company)) {
-        echo "
-            <script>
-                document.getElementById('company_name_error').innerText='* Please Enter Company Name';
-            </script>
-        ";
+        validation_error('company_name_error', '* Please Enter Company Name');
         $valid = 0;
     } else if (!preg_match('/^([^0-9]*)$/', $company)) {
-        echo "
-            <script>
-                document.getElementById('company_name_error').innerText='* Only Contain Letters';
-            </script>
-        ";
+        validation_error('company_name_error', '* Only Contain Letters');
         $valid = 0;
-    } else {
-        $valid = 1;
     }
     if (empty($salary)) {
-        echo " 
-            <script>
-                document.getElementById('salary_error').innerText='* Please Enter Salary';
-            </script>
-        ";
+        validation_error('salary_error', '* Please Enter Salary');
         $valid = 0;
-    } else {
-        $valid = 1;
     }
-
-    if ($avatar) {
+    if (!empty($avatar)) {
         $check = getimagesize($_FILES["avatar"]["tmp_name"]);
         if ($check !== false) {
             $uploadOk = 1;
         } else {
-            echo "<script>
-                document.getElementById('avatar_error').innerText='* File is Not Image';
-            </script>";
+            validation_error('avatar_error', '* File is Not Image');
             $valid = 0;
             $uploadOk = 0;
         }
         if (file_exists($target_file)) {
-            echo "<script>  
-            document.getElementById('avatar_error').innerText='* File already exists. Please upload file with different name';
-            </script>";
+            validation_error('avatar_error', '* File already exists. Please upload file with different name');
             $valid = 0;
             $uploadOk = 0;
         }
         if ($_FILES["avatar"]["size"] > 500000) {
-            echo "<script>
-                document.getElementById('avatar_error').innerText='* File is too large';
-            </script>";
+            validation_error('avatar_error', '* File is too large');
             $valid = 0;
             $uploadOk = 0;
         }
@@ -811,23 +396,16 @@ if (isset($_POST['update'])) {
             $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
             && $imageFileType != "gif"
         ) {
-            echo "<script>
-            document.getElementById('avatar_error').innerText='* Sorry, only JPG, JPEG, PNG & GIF files are allowed';
-            </script>";
+            validation_error('avatar_error', '* Sorry, only JPG, JPEG, PNG & GIF files are allowed');
             $valid = 0;
             echo ".";
             $uploadOk = 0;
         }
-        if ($uploadOk == 1) {
+        if ($uploadOk == 1 and $valid == 1) {
             $valid = 1;
             move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file);
         }
-    } //else {
-    //     echo "<script>
-    //     document.getElementById('avatar_error').innerText='* Please Upload Profile Picture.';
-    //     </script>";
-    //     $valid = 0;
-    // }
+    }
     if ($valid == 1) {
         update($id, $name, $e_id, $email, $gender, $address, $blood_group, $mobile, $hobbies, $year_from, $year_to, $position, $company, $salary, $avatar);
     }

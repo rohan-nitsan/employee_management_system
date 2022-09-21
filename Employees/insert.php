@@ -262,7 +262,7 @@
 include '../App/function.php';
 if (isset($_POST['register'])) {
     extract($_POST);
-    $valid = 0;
+    $valid = 1;
     # Avatar
 
     $target_dir = "../Upload/";
@@ -398,8 +398,7 @@ if (isset($_POST['register'])) {
             echo ".";
             $uploadOk = 0;
         }
-        if ($uploadOk == 1) {
-            $valid = 1;
+        if ($uploadOk == 1 and $valid == 1) {
             move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file);
         }
     } else {
