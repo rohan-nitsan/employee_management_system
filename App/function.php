@@ -91,3 +91,12 @@ function delete($id)
         echo "<script>window.location.href='../Employees/display.php'</script>";
     }
 }
+
+function validation_error($id, $msg)
+{
+    echo "
+        <script>
+            document.getElementById('$id').innerText='$msg';
+        </script>
+    ";
+}

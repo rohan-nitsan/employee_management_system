@@ -25,124 +25,95 @@
 
                                 <div class="row">
                                     <div class="col-md-6 mb-4">
-
                                         <div class="form-outline">
                                             <h6 class="form-label">Name</h6>
                                             <input type="text" name="name" class="form-control form-control-lg" />
                                             <p class="error" id="name_error"></p>
                                         </div>
-
                                     </div>
                                     <div class="col-md-6 mb-4">
-
                                         <div class="form-outline">
                                             <h6 class="form-label">Employee ID</h6>
                                             <input type="text" name="e_id" class="form-control form-control-lg" />
                                             <p class="error" id="e_id_error"></p>
 
                                         </div>
-
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 mb-4 pb-2">
-
                                         <div class="form-outline">
                                             <h6 class="form-label">Email</h6>
                                             <input type="email" name="email" class="form-control form-control-lg" />
                                             <p class="error" id="email_error"></p>
                                         </div>
-
                                     </div>
                                     <div class="col-md-6 mb-4">
-
                                         <h6 class="mb-2 pb-1">Gender </h6>
-
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="gender" value="male" />
                                             <label class="form-check-label">Male</label>
                                         </div>
-
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="gender" value="female" />
                                             <label class="form-check-label">Female</label>
                                         </div>
-
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="gender" value="other" />
                                             <label class="form-check-label">Other</label>
                                         </div>
                                         <p class="error" id="gender_error"></p>
-
                                     </div>
-
                                 </div>
                                 <div class="row">
                                     <h6 class="form-label">Address</h6>
                                     <div class="col-md-4 mb-4">
-
                                         <div class="form-outline datepicker w-100">
                                             <input type="text" class="form-control form-control-lg" name="building" placeholder="Building" />
                                             <p class="error" id="building_error"></p>
 
                                         </div>
-
                                     </div>
                                     <div class="col-md-4 mb-4">
-
                                         <div class="form-outline datepicker w-100">
                                             <input type="text" class="form-control form-control-lg" name="street" placeholder="Street" />
                                             <p class="error" id="street_error"></p>
 
                                         </div>
-
                                     </div>
                                     <div class="col-md-4 mb-4">
-
                                         <div class="form-outline datepicker w-100">
                                             <input type="text" class="form-control form-control-lg" name="road" placeholder="Road" />
                                             <p class="error" id="road_error"></p>
 
                                         </div>
-
                                     </div>
-
                                 </div>
                                 <div class="row">
                                     <div class="col-md-4 mb-4">
-
                                         <div class="form-outline datepicker w-100">
                                             <input type="text" class="form-control form-control-lg" name="city" placeholder="City" />
                                             <p class="error" id="city_error"></p>
 
                                         </div>
-
                                     </div>
                                     <div class="col-md-4 mb-4">
-
                                         <div class="form-outline datepicker w-100">
                                             <input type="text" class="form-control form-control-lg" name="state" placeholder="State" />
                                             <p class="error" id="state_error"></p>
-
                                         </div>
-
                                     </div>
                                     <div class="col-md-4 mb-4">
-
                                         <div class="form-outline datepicker w-100">
                                             <input type="number" class="form-control form-control-lg" name="pin" placeholder="Pin Code" />
                                             <p class="error" id="pin_error"></p>
-
                                         </div>
-
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 mb-4">
-
                                         <div class="form-outline">
                                             <h6 class="form-label">Blood Group</h6>
-
                                             <div class='form-check form-check-inline'>
                                                 <input class='form-check-input' type='radio' name='blood_group' value='A+'>
                                                 <label class='form-check-label'>A+</label>
@@ -175,28 +146,20 @@
                                                 <input class='form-check-input' type='radio' name='blood_group' value='AB-'>
                                                 <label class='form-check-label'>AB-</label>
                                             </div>
-
-
                                             <p class="error" id="blood_group_error"></p>
-
-
                                         </div>
-
                                     </div>
                                     <div class="col-md-6 mb-4">
-
                                         <div class="form-outline">
                                             <h6 class="form-label">Mobile Number</h6>
                                             <input type="text" name="mobile" class="form-control form-control-lg" />
                                             <p class="error" id="mobile_error"></p>
 
                                         </div>
-
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12 mb-4">
-
                                         <div class="form-outline">
                                             <h6 class="form-label">Hobbies</h6>
                                             <div class="form-check form-check-inline">
@@ -220,87 +183,57 @@
                                                 <label class="form-check-label">Traveling</label>
                                             </div>
                                             <p class="error" id="hobbies_error"></p>
-
-
                                         </div>
-
                                     </div>
-
                                 </div>
                                 <div class="row">
                                     <h6 class="form-label">Experience</h6>
                                     <div class="col-md-4 mb-4">
-
                                         <div class="form-outline">
-
                                             <input type="number" name="year_from" class="form-control form-control-lg" placeholder="Year From" />
                                             <p class="error" id="year_from_error"></p>
-
-
                                         </div>
-
                                     </div>
                                     <div class="col-md-4 mb-4">
-
                                         <div class="form-outline">
-
                                             <input type="number" name="year_to" class="form-control form-control-lg" placeholder="Year To" />
                                             <p class="error" id="year_to_error"></p>
-
                                         </div>
-
                                     </div>
                                     <div class="col-md-4 mb-4">
-
                                         <div class="form-outline">
-
                                             <input type="text" name="position" class="form-control form-control-lg" placeholder="Position" />
                                             <p class="error" id="position_error"></p>
-
                                         </div>
-
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 mb-4">
-
                                         <div class="form-outline">
-
                                             <input type="text" name="company" class="form-control form-control-lg" placeholder="Company Name" />
                                             <p class="error" id="company_name_error"></p>
-
                                         </div>
-
                                     </div>
                                     <div class="col-md-6 mb-4">
-
                                         <div class="form-outline">
-
                                             <input type="number" name="salary" class="form-control form-control-lg" placeholder="Salary" />
                                             <p class="error" id="salary_error"></p>
-
                                         </div>
-
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12 mb-4">
                                         <h6 class="form-label">Profile Picture</h6>
                                         <div class="input-group mb-3">
-
                                             <input type="file" class="form-control" name="avatar" id="avatar">
-
                                         </div>
                                         <p class="error" id="avatar_error"></p>
                                     </div>
                                 </div>
-
-
                                 <div class=" mt-4 pt-2">
                                     <input type="submit" name="register" class="btn btn-primary btn-lg" id="" value="Register">
                                     <input class="btn btn-danger btn-lg" type="reset" value="Reset" />
                                 </div>
-
                             </form>
                         </div>
                     </div>
@@ -326,7 +259,7 @@
 
 <?php
 
-
+include '../App/function.php';
 if (isset($_POST['register'])) {
     extract($_POST);
     $valid = 0;
@@ -338,240 +271,103 @@ if (isset($_POST['register'])) {
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
     $avatar = basename($_FILES["avatar"]["name"]);
 
-
-
-
-
     # Validations
     if (empty($name)) {
-        echo "
-            <script>
-                document.getElementById('name_error').innerText='* Please Enter Name';
-            </script>
-        ";
+        validation_error('name_error', '* Please Enter Name');
         $valid = 0;
-    } else {
-        $valid = 1;
+    } else if (!preg_match('/^([^0-9]*)$/', $name)) {
+        validation_error('name_error', '* Only Contain Letters');
+        $valid = 0;
     }
     if (empty($e_id)) {
-        echo "
-            <script>
-                document.getElementById('e_id_error').innerText='* Please Enter Employee ID';
-            </script>
-        ";
+        validation_error('e_id_error', '* Please Enter Employee ID');
         $valid = 0;
-    } else {
-        $valid = 1;
     }
     if (empty($email)) {
-        echo "
-            <script>
-                document.getElementById('email_error').innerText='* Please Enter Email';
-            </script>
-        ";
+        validation_error('email_error', '* Please Enter Email');
         $valid = 0;
     } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo "
-        <script>
-            document.getElementById('email_error').innerText='* Please Enter Valid Email';
-        </script>
-        ";
+        validation_error('email_error', '* Please Enter Valid Email');
         $valid = 0;
-    } else {
-        $valid = 1;
     }
     if (empty($gender)) {
-        echo "
-            <script>
-                document.getElementById('gender_error').innerText='* Please Select Gender';
-            </script>
-        ";
+        validation_error('gender_error', '* Please Select Gender');
         $valid = 0;
-    } else {
-        $valid = 1;
     }
     if (empty($building)) {
-        echo "
-            <script>
-                document.getElementById('building_error').innerText='* Please Enter Building';
-            </script>
-        ";
+        validation_error('building_error', '* Please Enter Building');
         $valid = 0;
-    } else {
-        $valid = 1;
     }
     if (empty($street)) {
-        echo "
-            <script>
-                document.getElementById('street_error').innerText='* Please Enter Street';
-            </script>
-        ";
+        validation_error('street_error', '* Please Enter Street');
         $valid = 0;
-    } else {
-        $valid = 1;
     }
     if (empty($road)) {
-        echo "
-            <script>
-                document.getElementById('road_error').innerText='* Please Enter Road';
-            </script>
-        ";
+        validation_error('road_error', '* Please Enter Road');
         $valid = 0;
-    } else {
-        $valid = 1;
     }
 
     if (empty($city)) {
-        echo "
-            <script>
-                document.getElementById('city_error').innerText='* Please Enter City';
-            </script>
-        ";
+        validation_error('city_error', '* Please Enter City');
         $valid = 0;
-    } else {
-        $valid = 1;
     }
     if (empty($state)) {
-        echo "
-            <script>
-                document.getElementById('state_error').innerText='* Please Enter State';
-            </script>
-        ";
+        validation_error('state_error', '* Please Enter State');
         $valid = 0;
-    } else {
-        $valid = 1;
     }
     if (empty($pin)) {
-        echo "
-            <script>
-                document.getElementById('pin_error').innerText='* Please Enter Pin Code';
-            </script>
-        ";
+        validation_error('pin_error', '* Please Enter Pin Code');
         $valid = 0;
     } else if (strlen($pin) < 6 or strlen($pin) > 6) {
-        echo "
-        <script>
-            document.getElementById('pin_error').innerText='* Invalid Pin';
-        </script>
-    ";
+        validation_error('pin_error', '* Invalid Pin');
         $valid = 0;
-    } else {
-        $valid = 1;
     }
     if (empty($blood_group)) {
-        echo "
-            <script>
-                document.getElementById('blood_group_error').innerText='* Please Select Blood Group';
-            </script>
-        ";
+        validation_error('blood_group_error', '* Please Select Blood Group');
         $valid = 0;
-    } else {
-        $valid = 1;
     }
     if (empty($mobile)) {
-        echo "
-            <script>
-                document.getElementById('mobile_error').innerText='* Please Enter Mobile Number';
-            </script>
-        ";
+        validation_error('mobile_error', '* Please Enter Mobile Number');
         $valid = 0;
     } else if (!preg_match('/^[0-9]{10}+$/', $mobile)) {
-        echo "
-        <script>
-            document.getElementById('mobile_error').innerText='* Please Enter Valid Mobile Number';
-        </script>
-        ";
+        validation_error('mobile_error', '* Please Enter Valid Mobile Number');
         $valid = 0;
-    } else {
-        $valid = 1;
     }
     if (empty($hobbies) or count($hobbies) < 2) {
-        echo "
-            <script>
-                document.getElementById('hobbies_error').innerText='* Please Select Any 2 Hobbies';
-            </script>
-        ";
+        validation_error('hobbies_error', '* Please Select Any 2 Hobbies');
         $valid = 0;
-    } else {
-        $valid = 1;
     }
     if (empty($year_from)) {
-        echo "
-            <script>
-                document.getElementById('year_from_error').innerText='* Please Enter Year From';
-            </script>
-        ";
+        validation_error('year_from_error', '* Please Enter Year From');
         $valid = 0;
     } else if ((int)$year_from > date("Y") or strlen($year_from) < 4) {
-        echo "
-            <script>
-                document.getElementById('year_from_error').innerText='* Invalid Year';
-            </script>
-        ";
+        validation_error('year_from_error', '* Invalid Year');
         $valid = 0;
-    } else {
-        $valid = 1;
     }
     if (empty($year_to)) {
-        echo "
-            <script>
-                document.getElementById('year_to_error').innerText='* Please Enter Year To';
-            </script>
-        ";
+        validation_error('year_to_error', '* Please Enter Year To');
         $valid = 0;
     } else if ((int)$year_to > date("Y") or strlen($year_to) < 4) {
-        echo "
-            <script>
-                document.getElementById('year_to_error').innerText='* Invalid Year';
-            </script>
-        ";
+        validation_error('year_to_error', '* Invalid Year');
         $valid = 0;
-    } else {
-        $valid = 1;
     }
     if (empty($position)) {
-        echo "
-            <script>
-                document.getElementById('position_error').innerText='* Please Enter Position';
-            </script>
-        ";
+        validation_error('position_error', '* Please Enter Position');
         $valid = 0;
     } else if (!preg_match('/^([^0-9]*)$/', $position)) {
-        echo "
-            <script>
-                document.getElementById('position_error').innerText='* Only Contain Letters';
-            </script>
-        ";
+        validation_error('position_error', '* Only Contain Letters');
         $valid = 0;
-    } else {
-        $valid = 1;
     }
     if (empty($company)) {
-        echo "
-            <script>
-                document.getElementById('company_name_error').innerText='* Please Enter Company Name';
-            </script>
-        ";
+        validation_error('company_name_error', '* Please Enter Company Name');
         $valid = 0;
     } else if (!preg_match('/^([^0-9]*)$/', $company)) {
-        echo "
-            <script>
-                document.getElementById('company_name_error').innerText='* Only Contain Letters';
-            </script>
-        ";
+        validation_error('company_name_error', '* Only Contain Letters');
         $valid = 0;
-    } else {
-        $valid = 1;
     }
     if (empty($salary)) {
-        echo " 
-            <script>
-                document.getElementById('salary_error').innerText='* Please Enter Salary';
-            </script>
-        ";
+        validation_error('salary_error', '* Please Enter Salary');
         $valid = 0;
-    } else {
-        $valid = 1;
     }
 
     if ($avatar) {
@@ -579,23 +375,17 @@ if (isset($_POST['register'])) {
         if ($check !== false) {
             $uploadOk = 1;
         } else {
-            echo "<script>
-                document.getElementById('avatar_error').innerText='* File is Not Image';
-            </script>";
+            validation_error('avatar_error', '* File is Not Image');
             $valid = 0;
             $uploadOk = 0;
         }
         if (file_exists($target_file)) {
-            echo "<script>  
-            document.getElementById('avatar_error').innerText='* File already exists. Please upload file with different name';
-            </script>";
+            validation_error('avatar_error', '* File already exists. Please upload file with different name');
             $valid = 0;
             $uploadOk = 0;
         }
         if ($_FILES["avatar"]["size"] > 500000) {
-            echo "<script>
-                document.getElementById('avatar_error').innerText='* File is too large';
-            </script>";
+            validation_error('avatar_error', '* File is too large');
             $valid = 0;
             $uploadOk = 0;
         }
@@ -603,9 +393,7 @@ if (isset($_POST['register'])) {
             $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
             && $imageFileType != "gif"
         ) {
-            echo "<script>
-            document.getElementById('avatar_error').innerText='* Sorry, only JPG, JPEG, PNG & GIF files are allowed';
-            </script>";
+            validation_error('avatar_error', '* Sorry, only JPG, JPEG, PNG & GIF files are allowed');
             $valid = 0;
             echo ".";
             $uploadOk = 0;
@@ -615,13 +403,11 @@ if (isset($_POST['register'])) {
             move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file);
         }
     } else {
-        echo "<script>
-        document.getElementById('avatar_error').innerText='* Please Upload Profile Picture.';
-        </script>";
+        validation_error('avatar_error', '* Please Upload Profile Picture');
+
         $valid = 0;
     }
     if ($valid == 1) {
-        include '../App/function.php';
         insert($name, $e_id, $email, $gender, $building, $street, $road, $city, $state, $pin, $blood_group, $mobile, $hobbies, $year_from, $year_to, $position, $company, $salary, $avatar);
     }
 }
