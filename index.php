@@ -1,34 +1,28 @@
-<!doctype html>
-<html lang="en">
+<?php
+include 'App/function.php';
+include 'Config/connection.php';
+session_start();
+$email = $_SESSION['email'];
+$password = $_SESSION['password'];
+if ($email and $password) {
+    $cmd = "SELECT * FROM employee WHERE email='$email' and password='$password'";
+    $result = mysqli_query($con, $cmd) or die(mysqli_error($con));
+    $data = mysqli_fetch_array($result);
+    if ($data['is_admin'] == 1) {
+        echo "Welcome Admin";
+    }
+    if ($data['is_admin'] == 0) {
+        echo "Welcome User";
+    }
+    if (isset($_POST['logout'])) {
+        session_unset();
+        session_destroy();
+        header('location:login.php');
+    }
+}
 
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="./Assets//CSS/index.css">
-    <title>Welcome</title>
-</head>
-
-<body>
-    <div class="container">
-        <h1>Employee Management System</h1>
-        <a href="./Employees/insert.php"><button class="btn btn-primary">Add Employee</button></a>
-        <a href="./Employees/display.php"><button class="btn btn-warning">View Employee</button></a>
-    </div>
-
-    <!-- Optional JavaScript; choose one of the two! -->
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-    -->
-</body>
-
-</html>
+?>
+<form method="POST">
+    <input type="submit" value="Logout" name="logout" />
+</form>
+<?php ?>

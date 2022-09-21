@@ -214,13 +214,13 @@ $data = edit($id);
                                     <h6 class="form-label">Experience</h6>
                                     <div class="col-md-4 mb-4">
                                         <div class="form-outline">
-                                            <input type="text" name="year_from" class="form-control form-control-lg" placeholder="Year From" value="<?php echo $data['year_from']; ?>" />
+                                            <input type="number" name="year_from" class="form-control form-control-lg" placeholder="Year From" value="<?php echo $data['year_from']; ?>" />
                                             <p class="error" id="year_from_error"></p>
                                         </div>
                                     </div>
                                     <div class="col-md-4 mb-4">
                                         <div class="form-outline">
-                                            <input type="text" name="year_to" class="form-control form-control-lg" placeholder="Year To" value="<?php echo $data['year_to']; ?>" />
+                                            <input type="number" name="year_to" class="form-control form-control-lg" placeholder="Year To" value="<?php echo $data['year_to']; ?>" />
                                             <p class="error" id="year_to_error"></p>
                                         </div>
                                     </div>

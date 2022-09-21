@@ -100,3 +100,16 @@ function validation_error($id, $msg)
         </script>
     ";
 }
+
+function login($email, $password)
+{
+    include 'Config/connection.php';
+    $cmd = "SELECT * FROM employee WHERE email='$email' and password='$password'";
+    $result = mysqli_query($con, $cmd) or die(mysqli_error($con));
+    return $result;
+    // if($result){
+    //     return 1;
+    // }else {
+    //     return 0;
+    // }
+}
