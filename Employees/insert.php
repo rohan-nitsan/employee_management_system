@@ -334,10 +334,11 @@ if (isset($_POST['register'])) {
 
     $target_dir = "../Upload/";
     $target_file = $target_dir . basename($_FILES["avatar"]["name"]);
-    $fname = basename($_FILES["avatar"]["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
     $avatar = basename($_FILES["avatar"]["name"]);
+
+
 
 
 

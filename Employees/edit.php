@@ -542,10 +542,11 @@ if (isset($_POST['update'])) {
 
     $target_dir = "../Upload/";
     $target_file = $target_dir . basename($_FILES["avatar"]["name"]);
-    $fname = basename($_FILES["avatar"]["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-    $avatar = basename($_FILES["avatar"]["name"]);
+    if ($_FILES["avatar"]["name"]) {
+        $avatar = basename($_FILES["avatar"]["name"]);
+    }
 
 
 
@@ -821,12 +822,12 @@ if (isset($_POST['update'])) {
             $valid = 1;
             move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file);
         }
-    } else {
-        echo "<script>
-        document.getElementById('avatar_error').innerText='* Please Upload Profile Picture.';
-        </script>";
-        $valid = 0;
-    }
+    } //else {
+    //     echo "<script>
+    //     document.getElementById('avatar_error').innerText='* Please Upload Profile Picture.';
+    //     </script>";
+    //     $valid = 0;
+    // }
     if ($valid == 1) {
         update($id, $name, $e_id, $email, $gender, $address, $blood_group, $mobile, $hobbies, $year_from, $year_to, $position, $company, $salary, $avatar);
     }

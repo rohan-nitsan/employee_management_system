@@ -60,6 +60,15 @@ function update($id, $name, $e_id, $email, $gender, $address, $blood_group, $mob
 {
     include '../Config/connection.php';
     $hobbie = "";
+
+    $img_cmd = "SELECT avatar FROM employee WHERE id='$id'";
+    $img_result = mysqli_query($con, $img_cmd) or die(mysqli_error($con));
+    $img = mysqli_fetch_array($img_result);
+
+    if (empty($avatar)) {
+        $avatar = $img['avatar'];
+    }
+
     foreach ($hobbies as $hob) {
         $hobbie .= $hob . ",";
     }
