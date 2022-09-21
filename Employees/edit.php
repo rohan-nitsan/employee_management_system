@@ -78,28 +78,26 @@ $data = edit($id);
                                                 ';
                                         } else {
                                             echo '        
-                                            div class="form-check form-check-inline">
+                                            <div class="form-check form-check-inline">
                                                 <input class="form-check-input" type="radio" name="gender" value="male"/>
                                                 <label class="form-check-label">Male</label>
                                             </div>
                                                 ';
                                         }
                                         if ($data['gender'] == "female") {
-                                            echo '
-                                                
+                                            echo '        
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="gender" value="female" checked />
+                                                <input class="form-check-input" type="radio" name="gender" value="female" checked/>
                                                 <label class="form-check-label">Female</label>
                                             </div>
-                                            ';
+                                                ';
                                         } else {
-                                            echo '
-                                                
+                                            echo '        
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="gender" value="female" />
+                                                <input class="form-check-input" type="radio" name="gender" value="female"/>
                                                 <label class="form-check-label">Female</label>
                                             </div>
-                                            ';
+                                                ';
                                         }
                                         if ($data['gender'] == "other") {
                                             echo '
@@ -290,32 +288,56 @@ $data = edit($id);
                                 <div class="row">
                                     <div class="col-md-12 mb-4">
 
+                                        <?php
+                                        $myHobbies = explode(',', $data['hobbies']);
+                                        ?>
+
                                         <div class="form-outline">
                                             <h6 class="form-label">Hobbies</h6>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" name="hobbies[]" value="cricket">
+                                                <input class="form-check-input" type="checkbox" name="hobbies[]" value="cricket" <?php foreach ($myHobbies as $hob) {
+                                                                                                                                        if ($hob == "cricket") {
+                                                                                                                                            echo "checked";
+                                                                                                                                        }
+                                                                                                                                    } ?>>
                                                 <label class="form-check-label">Cricket</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" name="hobbies[]" value="reading">
+                                                <input class="form-check-input" type="checkbox" name="hobbies[]" value="reading" <?php foreach ($myHobbies as $hob) {
+                                                                                                                                        if ($hob == "reading") {
+                                                                                                                                            echo "checked";
+                                                                                                                                        }
+                                                                                                                                    } ?>>
                                                 <label class="form-check-label">Reading</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" name="hobbies[]" value="music">
+                                                <input class="form-check-input" type="checkbox" name="hobbies[]" value="music" <?php foreach ($myHobbies as $hob) {
+                                                                                                                                    if ($hob == "music") {
+                                                                                                                                        echo "checked";
+                                                                                                                                    }
+                                                                                                                                } ?>>
                                                 <label class="form-check-label">Music</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" name="hobbies[]" value="e-games">
+                                                <input class="form-check-input" type="checkbox" name="hobbies[]" value="e-games" <?php foreach ($myHobbies as $hob) {
+                                                                                                                                        if ($hob == "e-games") {
+                                                                                                                                            echo "checked";
+                                                                                                                                        }
+                                                                                                                                    } ?>>
                                                 <label class="form-check-label">E-Games</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" name="hobbies[]" value="traveling">
+                                                <input class="form-check-input" type="checkbox" name="hobbies[]" value="traveling" <?php foreach ($myHobbies as $hob) {
+                                                                                                                                        if ($hob == "traveling") {
+                                                                                                                                            echo "checked";
+                                                                                                                                        }
+                                                                                                                                    } ?>>
                                                 <label class="form-check-label">Traveling</label>
                                             </div>
 
                                             <?php
 
-                                            $myHobbies = explode(',', $data['hobbies']);
+
 
                                             // if ($hob == 'cricket') {
                                             //     echo '
@@ -665,7 +687,7 @@ if (isset($_POST['update'])) {
             $valid = 1;
         }
         if ($valid == 1) {
-            update($id,$name, $e_id, $email, $gender, $address, $blood_group, $mobile, $hobbies, $year_from, $year_to, $position, $company, $salary, $avatar);
+            update($id, $name, $e_id, $email, $gender, $address, $blood_group, $mobile, $hobbies, $year_from, $year_to, $position, $company, $salary, $avatar);
         }
     }
 }

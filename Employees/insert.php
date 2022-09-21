@@ -233,7 +233,7 @@
 
                                         <div class="form-outline">
 
-                                            <input type="date" name="year_from" class="form-control form-control-lg" placeholder="Year From" />
+                                            <input type="text" name="year_from" class="form-control form-control-lg" placeholder="Year From" />
                                             <p class="error" id="year_from_error"></p>
 
 
@@ -369,6 +369,13 @@ if (isset($_POST['register'])) {
             </script>
         ";
         $valid = 0;
+    } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo "
+        <script>
+            document.getElementById('email_error').innerText='* Please Enter Valid Email';
+        </script>
+        ";
+        $valid = 0;
     } else {
         $valid = 1;
     }
@@ -460,6 +467,13 @@ if (isset($_POST['register'])) {
             </script>
         ";
         $valid = 0;
+    } else if (!preg_match('/^[0-9]{10}+$/', $mobile)) {
+        echo "
+        <script>
+            document.getElementById('mobile_error').innerText='* Please Enter Valid Mobile Number';
+        </script>
+        ";
+        $valid = 0;
     } else {
         $valid = 1;
     }
@@ -507,6 +521,13 @@ if (isset($_POST['register'])) {
         echo "
             <script>
                 document.getElementById('company_name_error').innerText='* Please Enter Company Name';
+            </script>
+        ";
+        $valid = 0;
+    } else if (!preg_match('/^([^0-9]*)$/', $company)) {
+        echo "
+            <script>
+                document.getElementById('company_name_error').innerText='* Company Name Only Contain Letter';
             </script>
         ";
         $valid = 0;
