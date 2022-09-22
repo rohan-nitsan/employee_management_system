@@ -11,7 +11,8 @@ if (!$_SESSION['email'] and  !$_SESSION['password']) {
 if ($_SESSION['email'] and  $_SESSION['password']) {
     $email = $_SESSION['email'];
     $password = $_SESSION['password'];
-    $cmd = "SELECT * FROM employee WHERE email='$email' and password='$password'";
+    $pwd = md5($password);
+    $cmd = "SELECT * FROM employee WHERE email='$email' and password='$pwd'";
     $result = mysqli_query($con, $cmd) or die(mysqli_error($con));
     $data = mysqli_fetch_array($result);
 

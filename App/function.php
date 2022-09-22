@@ -1,5 +1,5 @@
 <?php
-function insert($name, $e_id, $email, $gender, $building, $street, $road,  $city, $state, $pin, $blood_group, $mobile, $hobbies, $year_from, $year_to, $position, $company, $salary, $avatar)
+function insert($name, $e_id, $email, $password, $gender, $building, $street, $road,  $city, $state, $pin, $blood_group, $mobile, $hobbies, $year_from, $year_to, $position, $company, $salary, $avatar, $is_admin)
 {
     include '../Config/connection.php';
 
@@ -8,11 +8,12 @@ function insert($name, $e_id, $email, $gender, $building, $street, $road,  $city
     foreach ($hobbies as $hob) {
         $hobbie .= $hob . ",";
     }
+    $pwd = md5($password);
     $cmd = "
         INSERT INTO employee 
-        (name,employee_id,email,gender,address,blood_group,mobile_no,hobbies,year_from,year_to,position,company,salary,avatar) 
+        (name,employee_id,email,password,gender,address,blood_group,mobile_no,hobbies,year_from,year_to,position,company,salary,avatar,is_admin) 
         VALUES 
-        ('$name','$e_id','$email','$gender','$address','$blood_group','$mobile','$hobbie','$year_from','$year_to','$position','$company','$salary','$avatar')
+        ('$name','$e_id','$email','$pwd','$gender','$address','$blood_group','$mobile','$hobbie','$year_from','$year_to','$position','$company','$salary','$avatar','$is_admin')
         ";
     $result = mysqli_query($con, $cmd) or die(mysqli_error($con));
     if ($result) {
@@ -53,16 +54,6 @@ function display()
     }
 }
 
-// function admin_edit($id)
-// {
-//     include 'Config/connection.php';
-
-//     $cmd = "SELECT * FROM employee WHERE id=$id";
-//     $result  = mysqli_query($con, $cmd) or die(mysqli_error($con));
-//     global $data;
-//     $data = mysqli_fetch_array($result);
-//     return $data;
-// }
 function edit($id)
 {
     if ($_SESSION['is_admin'] == 1) {
@@ -79,7 +70,7 @@ function edit($id)
     return $data;
 }
 
-function update($id, $name, $e_id, $email, $gender, $address, $blood_group, $mobile, $hobbies, $year_from, $year_to, $position, $company, $salary, $avatar)
+function update($id, $name, $e_id, $email, $password, $gender, $address, $blood_group, $mobile, $hobbies, $year_from, $year_to, $position, $company, $salary, $avatar, $is_admin)
 {
     if ($_SESSION['is_admin'] == 1) {
         include '../Config/connection.php';
@@ -100,7 +91,8 @@ function update($id, $name, $e_id, $email, $gender, $address, $blood_group, $mob
     foreach ($hobbies as $hob) {
         $hobbie .= $hob . ",";
     }
-    $cmd = "UPDATE employee SET name='$name',employee_id='$e_id',email='$email',gender='$gender',address='$address',blood_group='$blood_group',mobile_no='$mobile',hobbies='$hobbie',year_from='$year_from',year_to='$year_to',position='$position',company='$company',salary='$salary',avatar='$avatar' WHERE id='$id'";
+    $pwd = md5($password);
+    $cmd = "UPDATE employee SET name='$name',employee_id='$e_id',email='$email',password='$pwd',gender='$gender',address='$address',blood_group='$blood_group',mobile_no='$mobile',hobbies='$hobbie',year_from='$year_from',year_to='$year_to',position='$position',company='$company',salary='$salary',avatar='$avatar',is_admin='$is_admin' WHERE id='$id'";
     $result = mysqli_query($con, $cmd) or die(mysqli_error($con));
     if ($result) {
         echo "<script>alert('Update Successful');</script>";
@@ -137,20 +129,8 @@ function validation_error($id, $msg)
 function login($email, $password)
 {
     include 'Config/connection.php';
-    $cmd = "SELECT * FROM employee WHERE email='$email' and password='$password'";
+    $pwd = md5($password);
+    $cmd = "SELECT * FROM employee WHERE email='$email' and password='$pwd'";
     $result = mysqli_query($con, $cmd) or die(mysqli_error($con));
     return $result;
 }
-
-// function is_admin($id)
-// {
-//     include '../Config/connection.php';
-//     $cmd = "SELECT * FROM employee WHERE id='$id'";
-//     $result = mysqli_query($con, $cmd) or die(mysqli_error($con));
-//     $data = mysqli_fetch_array($result);
-//     if ($data['is_admin'] == 1) {
-//         return 1;
-//     } else {
-//         return 0;
-//     }
-// }

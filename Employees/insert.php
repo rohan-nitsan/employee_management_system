@@ -57,21 +57,40 @@ if (empty($_SESSION)) {
                                             <p class="error" id="email_error"></p>
                                         </div>
                                     </div>
-                                    <div class="col-md-6 mb-4">
-                                        <h6 class="mb-2 pb-1">Gender </h6>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="gender" value="male" />
-                                            <label class="form-check-label">Male</label>
+                                    <div class="col-md-6 mb-4 pb-2">
+                                        <div class="form-outline">
+                                            <h6 class="form-label">Password</h6>
+                                            <input type="password" name="password" class="form-control form-control-lg" />
+                                            <p class="error" id="password_error"></p>
                                         </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="gender" value="female" />
-                                            <label class="form-check-label">Female</label>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 mb-4">
+                                            <h6 class="mb-2 pb-1">Gender </h6>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="gender" value="male" />
+                                                <label class="form-check-label">Male</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="gender" value="female" />
+                                                <label class="form-check-label">Female</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="gender" value="other" />
+                                                <label class="form-check-label">Other</label>
+                                            </div>
+                                            <p class="error" id="gender_error"></p>
                                         </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="gender" value="other" />
-                                            <label class="form-check-label">Other</label>
+                                        <div class="col-md-6 mb-4 ">
+                                            <div class="form-outline">
+                                                <h6 class="form-label">Mobile Number</h6>
+                                                <input type="text" name="mobile" class="form-control form-control-lg" />
+                                                <p class="error" id="mobile_error"></p>
+
+                                            </div>
                                         </div>
-                                        <p class="error" id="gender_error"></p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -157,18 +176,9 @@ if (empty($_SESSION)) {
                                             </div>
                                             <p class="error" id="blood_group_error"></p>
                                         </div>
+
                                     </div>
                                     <div class="col-md-6 mb-4">
-                                        <div class="form-outline">
-                                            <h6 class="form-label">Mobile Number</h6>
-                                            <input type="text" name="mobile" class="form-control form-control-lg" />
-                                            <p class="error" id="mobile_error"></p>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12 mb-4">
                                         <div class="form-outline">
                                             <h6 class="form-label">Hobbies</h6>
                                             <div class="form-check form-check-inline">
@@ -194,6 +204,10 @@ if (empty($_SESSION)) {
                                             <p class="error" id="hobbies_error"></p>
                                         </div>
                                     </div>
+
+                                </div>
+                                <div class="row">
+
                                 </div>
                                 <div class="row">
                                     <h6 class="form-label">Experience</h6>
@@ -231,12 +245,19 @@ if (empty($_SESSION)) {
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-12 mb-4">
+
+                                    <div class="col-md-6 mb-4">
                                         <h6 class="form-label">Profile Picture</h6>
                                         <div class="input-group mb-3">
                                             <input type="file" class="form-control" name="avatar" id="avatar">
                                         </div>
                                         <p class="error" id="avatar_error"></p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" name="is_admin" type="checkbox" value="1" role="switch">
+                                        <h6 class="form-label" for="flexSwitchCheckChecked">Is Admin ?</h6>
                                     </div>
                                 </div>
                                 <div class=" mt-4 pt-2">
@@ -299,6 +320,13 @@ if (isset($_POST['register'])) {
         validation_error('email_error', '* Please Enter Valid Email');
         $valid = 0;
     }
+    if (empty($password)) {
+        validation_error('password_error', '* Please Enter Password');
+        $valid = 0;
+    } else if (strlen($password) < 8 or strlen($password > 20)) {
+        validation_error('password_error', '* Password Must Contain 8 to 20 Character');
+        $valid = 0;
+    }
     if (empty($gender)) {
         validation_error('gender_error', '* Please Select Gender');
         $valid = 0;
@@ -349,14 +377,14 @@ if (isset($_POST['register'])) {
     if (empty($year_from)) {
         validation_error('year_from_error', '* Please Enter Year From');
         $valid = 0;
-    } else if ((int)$year_from > date("Y") or strlen($year_from) < 4) {
+    } else if ((int)$year_from > date("Y") or strlen($year_from) < 4 or (int)$year_to < 0) {
         validation_error('year_from_error', '* Invalid Year');
         $valid = 0;
     }
     if (empty($year_to)) {
         validation_error('year_to_error', '* Please Enter Year To');
         $valid = 0;
-    } else if ((int)$year_to > date("Y") or strlen($year_to) < 4) {
+    } else if ((int)$year_to > date("Y") or strlen($year_to) < 4 or (int)$year_to < 0) {
         validation_error('year_to_error', '* Invalid Year');
         $valid = 0;
     }
@@ -376,6 +404,9 @@ if (isset($_POST['register'])) {
     }
     if (empty($salary)) {
         validation_error('salary_error', '* Please Enter Salary');
+        $valid = 0;
+    } else if ((int)$salary < 0) {
+        validation_error('salary_error', '* Invalid Salary');
         $valid = 0;
     }
 
@@ -416,7 +447,7 @@ if (isset($_POST['register'])) {
         $valid = 0;
     }
     if ($valid == 1) {
-        insert($name, $e_id, $email, $gender, $building, $street, $road, $city, $state, $pin, $blood_group, $mobile, $hobbies, $year_from, $year_to, $position, $company, $salary, $avatar);
+        insert($name, $e_id, $email, $password, $gender, $building, $street, $road, $city, $state, $pin, $blood_group, $mobile, $hobbies, $year_from, $year_to, $position, $company, $salary, $avatar, $is_admin);
     }
 }
 

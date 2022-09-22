@@ -66,6 +66,17 @@ $data = edit($id);
                                             <p class="error" id="email_error"></p>
                                         </div>
                                     </div>
+                                    <div class="col-md-6 mb-4 pb-2">
+                                        <div class="form-outline">
+                                            <h6 class="form-label">Password</h6>
+                                            <input type="password" name="password" class="form-control form-control-lg" value="<?php echo $data['password']; ?>" />
+                                            <p class="error" id="password_error"></p>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="row">
                                     <div class="col-md-6 mb-4">
                                         <h6 class="mb-2 pb-1">Gender </h6>
                                         <div class="form-check form-check-inline">
@@ -89,7 +100,13 @@ $data = edit($id);
                                         <p class="error" id="gender_error"></p>
 
                                     </div>
-
+                                    <div class="col-md-6 mb-4">
+                                        <div class="form-outline">
+                                            <h6 class="form-label">Mobile Number</h6>
+                                            <input type="text" name="mobile" class="form-control form-control-lg" value="<?php echo $data['mobile_no']; ?>" />
+                                            <p class="error" id="mobile_error"></p>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <h6 class="form-label">Address</h6>
@@ -164,15 +181,6 @@ $data = edit($id);
 
                                     </div>
                                     <div class="col-md-6 mb-4">
-                                        <div class="form-outline">
-                                            <h6 class="form-label">Mobile Number</h6>
-                                            <input type="text" name="mobile" class="form-control form-control-lg" value="<?php echo $data['mobile_no']; ?>" />
-                                            <p class="error" id="mobile_error"></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12 mb-4">
                                         <?php
                                         $myHobbies = explode(',', $data['hobbies']);
                                         ?>
@@ -258,14 +266,36 @@ $data = edit($id);
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-12 mb-4">
+                                    <div class="col-md-6 mb-4">
                                         <h6 class="form-label">Profile Picture</h6>
                                         <div class="input-group mb-3">
                                             <input type="file" class="form-control" name="avatar" value="Hii">
                                         </div>
                                         <p class="error" id="avatar_error"></p>
                                     </div>
+                                    <div class="col-md-6 mb-4">
+
+                                        <img src="<?php if ($_SESSION['is_admin'] == 1) {
+                                                        echo '../Upload/' . $data['avatar'];
+                                                    } else {
+                                                        echo 'Upload/' . $data['avatar'];
+                                                    } ?>" height="100px" width="100px" alt="">
+
+                                    </div>
                                 </div>
+                                <?php
+                                if ($_SESSION['is_admin'] == 1) {
+
+                                ?>
+                                    <div class="row">
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" value="1" name="is_admin" role="switch" <?php if ($data['is_admin'] == 1) {
+                                                                                                                                        echo 'checked';
+                                                                                                                                    } ?>>
+                                            <h6 class="form-label" for="flexSwitchCheckChecked">Is Admin ?</h6>
+                                        </div>
+                                    </div>
+                                <?php } ?>
                                 <div class=" mt-4 pt-2">
                                     <input type="submit" name="update" class="btn btn-primary btn-lg" id="" value="Update">
                                     <input class="btn btn-danger btn-lg" type="reset" value="Reset" />
@@ -330,6 +360,13 @@ if (isset($_POST['update'])) {
         validation_error('email_error', '* Please Enter Valid Email');
         $valid = 0;
     }
+    if (empty($password)) {
+        validation_error('password_error', '* Please Enter Password');
+        $valid = 0;
+    } else if (strlen($password) < 8 or strlen($password > 20)) {
+        validation_error('password_error', '* Password Must Contain 8 to 20 Character');
+        $valid = 0;
+    }
     if (empty($gender)) {
         validation_error('gender_error', '* Please Select Gender');
         $valid = 0;
@@ -356,14 +393,14 @@ if (isset($_POST['update'])) {
     if (empty($year_from)) {
         validation_error('year_from_error', '* Please Enter Year From');
         $valid = 0;
-    } else if ((int)$year_from > date("Y") or strlen($year_from) < 4) {
+    } else if ((int)$year_from > date("Y") or strlen($year_from) < 4 or (int)$year_from < 0) {
         validation_error('year_from_error', '* Invalid Year');
         $valid = 0;
     }
     if (empty($year_to)) {
         validation_error('year_to_error', '* Please Enter Year To');
         $valid = 0;
-    } else if ((int)$year_to > date("Y") or strlen($year_to) < 4) {
+    } else if ((int)$year_to > date("Y") or strlen($year_to) < 4 or (int)$year_to < 0) {
         validation_error('year_to_error', '* Invalid Year');
         $valid = 0;
     }
@@ -383,6 +420,9 @@ if (isset($_POST['update'])) {
     }
     if (empty($salary)) {
         validation_error('salary_error', '* Please Enter Salary');
+        $valid = 0;
+    } else if ((int)$salary < 0) {
+        validation_error('salary_error', '* Invalid Salary');
         $valid = 0;
     }
     if (!empty($avatar)) {
@@ -419,7 +459,7 @@ if (isset($_POST['update'])) {
         }
     }
     if ($valid == 1) {
-        update($id, $name, $e_id, $email, $gender, $address, $blood_group, $mobile, $hobbies, $year_from, $year_to, $position, $company, $salary, $avatar);
+        update($id, $name, $e_id, $email, $password, $gender, $address, $blood_group, $mobile, $hobbies, $year_from, $year_to, $position, $company, $salary, $avatar, $is_admin);
     }
 }
 ?>
