@@ -17,17 +17,26 @@ function insert($name, $e_id, $email, $gender, $building, $street, $road,  $city
     $result = mysqli_query($con, $cmd) or die(mysqli_error($con));
     if ($result) {
         echo "<script>alert('Register Successful');</script>";
-        echo "<script>window.location.href='display.php';</script>";
+        echo "<script>window.location.href='../index.php';</script>";
     }
 }
 
 function display()
 {
-    include '../Config/connection.php';
+    include 'Config/connection.php';
 
     $cmd = "SELECT * FROM employee";
     global $result;
     $result  = mysqli_query($con, $cmd) or die(mysqli_error($con));
+    echo '<tr>';
+    echo '<th>Emp. ID</th>';
+    echo '<th>Name</th>';
+    echo '<th>Email</th>';
+    echo '<th>Gender</th>';
+    echo '<th>Blood Group</th>';
+    echo '<th>Mobile No.</th>';
+    echo '<th colspan="2">Action</th>';
+    echo '</tr>';
 
     while ($row = mysqli_fetch_array($result)) {
         $id = $row['id'];
@@ -38,16 +47,30 @@ function display()
         echo "<td>" . ucfirst($row['gender']) . "</td>";
         echo "<td>" . $row['blood_group'] . "</td>";
         echo "<td>" . $row['mobile_no'] . "</td>";
-        echo "<td>" . "<a href='../Employees/edit.php?id=$id'><button class='btn btn-warning'>Edit</button></a>" . "</td>";
-        echo "<td>" . "<a href='../Employees/delete.php?id=$id''><button class='btn btn-danger'>Delete</button></a>" . "</td>";
+        echo "<td>" . "<a href='Employees/edit.php?id=$id'><button class='btn btn-warning'>Edit</button></a>" . "</td>";
+        echo "<td>" . "<a href='Employees/delete.php?id=$id''><button class='btn btn-danger'>Delete</button></a>" . "</td>";
         echo "</tr>";
     }
 }
 
+// function admin_edit($id)
+// {
+//     include 'Config/connection.php';
 
+//     $cmd = "SELECT * FROM employee WHERE id=$id";
+//     $result  = mysqli_query($con, $cmd) or die(mysqli_error($con));
+//     global $data;
+//     $data = mysqli_fetch_array($result);
+//     return $data;
+// }
 function edit($id)
 {
-    include '../Config/connection.php';
+    if ($_SESSION['is_admin'] == 1) {
+        include '../Config/connection.php';
+    }
+    if ($_SESSION['is_admin'] == 0) {
+        include 'Config/connection.php';
+    }
 
     $cmd = "SELECT * FROM employee WHERE id=$id";
     $result  = mysqli_query($con, $cmd) or die(mysqli_error($con));
@@ -58,7 +81,12 @@ function edit($id)
 
 function update($id, $name, $e_id, $email, $gender, $address, $blood_group, $mobile, $hobbies, $year_from, $year_to, $position, $company, $salary, $avatar)
 {
-    include '../Config/connection.php';
+    if ($_SESSION['is_admin'] == 1) {
+        include '../Config/connection.php';
+    }
+    if ($_SESSION['is_admin'] == 0) {
+        include 'Config/connection.php';
+    }
     $hobbie = "";
 
     $img_cmd = "SELECT avatar FROM employee WHERE id='$id'";
@@ -76,7 +104,12 @@ function update($id, $name, $e_id, $email, $gender, $address, $blood_group, $mob
     $result = mysqli_query($con, $cmd) or die(mysqli_error($con));
     if ($result) {
         echo "<script>alert('Update Successful');</script>";
-        echo "<script>window.location.href='../Employees/display.php'</script>";
+        if ($_SESSION['is_admin'] == 1) {
+            echo "<script>window.location.href='../index.php?id=$id'</script>";
+        }
+        if ($_SESSION['is_admin'] == 0) {
+            echo "<script>window.location.href='index.php?id=$id'</script>";
+        }
     }
 }
 
@@ -88,7 +121,7 @@ function delete($id)
 
     if ($result) {
         echo "<script>alert('Successfully Deleted ')</script>";
-        echo "<script>window.location.href='../Employees/display.php'</script>";
+        echo "<script>window.location.href='../index.php'</script>";
     }
 }
 
@@ -107,9 +140,17 @@ function login($email, $password)
     $cmd = "SELECT * FROM employee WHERE email='$email' and password='$password'";
     $result = mysqli_query($con, $cmd) or die(mysqli_error($con));
     return $result;
-    // if($result){
-    //     return 1;
-    // }else {
-    //     return 0;
-    // }
 }
+
+// function is_admin($id)
+// {
+//     include '../Config/connection.php';
+//     $cmd = "SELECT * FROM employee WHERE id='$id'";
+//     $result = mysqli_query($con, $cmd) or die(mysqli_error($con));
+//     $data = mysqli_fetch_array($result);
+//     if ($data['is_admin'] == 1) {
+//         return 1;
+//     } else {
+//         return 0;
+//     }
+// }

@@ -88,10 +88,13 @@ if (isset($_POST['login'])) {
     if ($valid == 1) {
         $valid_data = login($email, $password);
         if ($valid_data->num_rows == 1) {
+            $myData=mysqli_fetch_array($valid_data);
+            $id=$myData['id'];
             session_start();
             $_SESSION['email'] = $email;
             $_SESSION['password'] = $password;
-            header('location:index.php');
+            $_SESSION['id'] = $id;
+            header('location:index.php?id='.$id);
         } else {
             validation_error('login_error', '* Invalid Email or Password');
         }

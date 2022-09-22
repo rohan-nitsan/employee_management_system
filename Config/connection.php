@@ -1,8 +1,7 @@
 <?php
 
-require 'constant.php';
 
-$con = mysqli_connect(host, username, password, db_name);
+$con = mysqli_connect('localhost', 'root', '', 'crud');
 
 if (!$con) {
     echo "Error in Database Connection";

@@ -1,5 +1,17 @@
 <?php
-include '../App/function.php';
+
+if (empty($_SESSION)) {
+    session_start();
+    if ($_SESSION['is_admin'] != 1) {
+        echo "Hi";
+        session_unset();
+        session_destroy();
+        header('location:../login.php');
+    }
+    if ($_SESSION['is_admin'] == 1) {
+        include '../App/function.php';
+    }
+}
 $id = $_GET['id'];
 $data = edit($id);
 

@@ -1,3 +1,9 @@
+<?php
+if (empty($_SESSION)) {
+    header('location:../login.php');
+}
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -16,26 +22,12 @@
 
     <div class="container">
         <h1>Employee Details</h1>
-        <a href="insert.php"><button class="btn btn-success">Add Employee</button></a>
+        <a href="Employees/insert.php"><button class="btn btn-success m-2">Add Employee</button></a>
         <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Emp. ID</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Gender</th>
-                    <th>Blood Group</th>
-                    <th>Mobile No.</th>
-                    <th colspan="2">Action</th>
-                </tr>
-            <tbody>
-                <?php
-                include '../App/function.php';
-                display();
-                ?>
-
-            </tbody>
-            </thead>
+            <?php
+            // include 'App/function.php';
+            display();
+            ?>
         </table>
     </div>
 

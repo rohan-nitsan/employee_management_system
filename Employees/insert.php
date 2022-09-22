@@ -1,3 +1,12 @@
+<?php
+if (empty($_SESSION)) {
+    session_start();
+    if ($_SESSION['is_admin'] != 1) {
+        header('location:../login.php');
+    }
+}
+?>
+
 <!doctype html>
 <html lang="en">
 
