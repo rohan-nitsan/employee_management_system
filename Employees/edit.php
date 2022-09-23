@@ -27,7 +27,11 @@ $data = edit($id);
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="../Assets/CSS/insert.css">
+    <link rel="stylesheet" href="<?php if ($_SESSION['is_admin'] == 1) {
+                                        echo '../Assets/CSS/insert.css';
+                                    } else {
+                                        echo 'Assets/CSS/insert.css';
+                                    } ?>">
     <title>Update</title>
 </head>
 
@@ -69,7 +73,7 @@ $data = edit($id);
                                     <div class="col-md-6 mb-4 pb-2">
                                         <div class="form-outline">
                                             <h6 class="form-label">Password</h6>
-                                            <input type="password" name="password" class="form-control form-control-lg" value="<?php echo $data['password']; ?>" />
+                                            <input type="password" name="password" class="form-control form-control-lg" />
                                             <p class="error" id="password_error"></p>
                                         </div>
                                     </div>
@@ -363,7 +367,7 @@ if (isset($_POST['update'])) {
     if (empty($password)) {
         validation_error('password_error', '* Please Enter Password');
         $valid = 0;
-    } else if (strlen($password) < 8 or strlen($password > 20)) {
+    } else if (strlen($password) < 8 or strlen($password) > 40) {
         validation_error('password_error', '* Password Must Contain 8 to 20 Character');
         $valid = 0;
     }

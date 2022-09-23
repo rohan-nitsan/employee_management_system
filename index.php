@@ -54,7 +54,7 @@ if ($_SESSION['email'] and  $_SESSION['password']) {
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="#">Home</a>
                         </li>
-                       
+
                     </ul>
                     <form method="POST" class="d-flex">
                         <input type="submit" class="btn btn-danger" value="Logout" name="logout" />
@@ -88,6 +88,5 @@ if ($data['is_admin'] == 0) {
     include 'Employees/edit.php';
     $id = $data['id'];
     edit($id);
-   
 }
 ?>

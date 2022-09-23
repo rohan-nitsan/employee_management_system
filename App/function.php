@@ -98,9 +98,11 @@ function update($id, $name, $e_id, $email, $password, $gender, $address, $blood_
         echo "<script>alert('Update Successful');</script>";
         if ($_SESSION['is_admin'] == 1) {
             echo "<script>window.location.href='../index.php?id=$id'</script>";
+            return $result;
         }
         if ($_SESSION['is_admin'] == 0) {
             echo "<script>window.location.href='index.php?id=$id'</script>";
+            return $result;
         }
     }
 }
