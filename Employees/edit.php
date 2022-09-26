@@ -3,7 +3,7 @@
 if (empty($_SESSION)) {
     session_start();
     if ($_SESSION['is_admin'] != 1) {
-        echo "Hi";
+
         session_unset();
         session_destroy();
         header('location:../login.php');
@@ -117,7 +117,7 @@ $data = edit($id);
                                     <div class="col-md-12 mb-4">
 
                                         <div class="form-outline datepicker w-100">
-                                            <input type="text" class="form-control form-control-lg" name="address" placeholder="Building" value="<?php echo $data['address']; ?>" />
+                                            <input type="text" class="form-control form-control-lg" name="address" placeholder="Address" value="<?php echo $data['address']; ?>" />
                                             <p class="error" id="address_error"></p>
 
                                         </div>
@@ -273,7 +273,7 @@ $data = edit($id);
                                     <div class="col-md-6 mb-4">
                                         <h6 class="form-label">Profile Picture</h6>
                                         <div class="input-group mb-3">
-                                            <input type="file" class="form-control" name="avatar" value="Hii">
+                                            <input type="file" name="avatar" alt="Image Not Found">
                                         </div>
                                         <p class="error" id="avatar_error"></p>
                                     </div>
@@ -283,7 +283,7 @@ $data = edit($id);
                                                         echo '../Upload/' . $data['avatar'];
                                                     } else {
                                                         echo 'Upload/' . $data['avatar'];
-                                                    } ?>" height="100px" width="100px" alt="">
+                                                    } ?>" height="100px" width="100px" alt="Image Not Found">
 
                                     </div>
                                 </div>
@@ -329,7 +329,6 @@ $data = edit($id);
 </html>
 
 <?php
-
 
 if (isset($_POST['update'])) {
     extract($_POST);
@@ -463,7 +462,7 @@ if (isset($_POST['update'])) {
         }
     }
     if ($valid == 1) {
-        update($id, $name, $e_id, $email, $password, $gender, $address, $blood_group, $mobile, $hobbies, $year_from, $year_to, $position, $company, $salary, $avatar, $is_admin);
+        update($id, $_POST, $_FILES['avatar']['name']);
     }
 }
 ?>

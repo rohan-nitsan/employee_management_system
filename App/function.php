@@ -1,19 +1,19 @@
 <?php
-function insert($name, $e_id, $email, $password, $gender, $building, $street, $road,  $city, $state, $pin, $blood_group, $mobile, $hobbies, $year_from, $year_to, $position, $company, $salary, $avatar, $is_admin)
+function insert($data_array)
 {
     include '../Config/connection.php';
 
-    $address = $building . ", " . $street . ", " . $road . ", " . $city . ", " . $state . " " . "($pin)";
+    $address = $data_array['building'] . ", " . $data_array['street'] . ", " . $data_array['road'] . ", " . $data_array['city'] . ", " . $data_array['state'] . " " . "(" . $data_array['pin'] . ")";
     $hobbie = "";
-    foreach ($hobbies as $hob) {
+    foreach ($data_array['hobbies'] as $hob) {
         $hobbie .= $hob . ",";
     }
-    $pwd = md5($password);
+    $pwd = md5($data_array['password']);
     $cmd = "
         INSERT INTO employee 
         (name,employee_id,email,password,gender,address,blood_group,mobile_no,hobbies,year_from,year_to,position,company,salary,avatar,is_admin) 
         VALUES 
-        ('$name','$e_id','$email','$pwd','$gender','$address','$blood_group','$mobile','$hobbie','$year_from','$year_to','$position','$company','$salary','$avatar','$is_admin')
+        ('$data_array[name]','$data_array[e_id]','$data_array[email]','$pwd','$data_array[gender]','$address','$data_array[blood_group]','$data_array[mobile]','$hobbie','$data_array[year_from]','$data_array[year_to]','$data_array[position]','$data_array[company]','$data_array[salary]','$data_array[avatar]','$data_array[is_admin]')
         ";
     $result = mysqli_query($con, $cmd) or die(mysqli_error($con));
     if ($result) {
@@ -56,6 +56,7 @@ function display()
 
 function edit($id)
 {
+
     if ($_SESSION['is_admin'] == 1) {
         include '../Config/connection.php';
     }
@@ -70,8 +71,9 @@ function edit($id)
     return $data;
 }
 
-function update($id, $name, $e_id, $email, $password, $gender, $address, $blood_group, $mobile, $hobbies, $year_from, $year_to, $position, $company, $salary, $avatar, $is_admin)
+function update($id, $data_array, $file_name)
 {
+
     if ($_SESSION['is_admin'] == 1) {
         include '../Config/connection.php';
     }
@@ -79,20 +81,19 @@ function update($id, $name, $e_id, $email, $password, $gender, $address, $blood_
         include 'Config/connection.php';
     }
     $hobbie = "";
-
     $img_cmd = "SELECT avatar FROM employee WHERE id='$id'";
     $img_result = mysqli_query($con, $img_cmd) or die(mysqli_error($con));
     $img = mysqli_fetch_array($img_result);
 
-    if (empty($avatar)) {
-        $avatar = $img['avatar'];
+    if (empty($data_array['avatar'])) {
+        $data_array['avatar'] = $img['avatar'];
     }
 
-    foreach ($hobbies as $hob) {
+    foreach ($data_array['hobbies'] as $hob) {
         $hobbie .= $hob . ",";
     }
-    $pwd = md5($password);
-    $cmd = "UPDATE employee SET name='$name',employee_id='$e_id',email='$email',password='$pwd',gender='$gender',address='$address',blood_group='$blood_group',mobile_no='$mobile',hobbies='$hobbie',year_from='$year_from',year_to='$year_to',position='$position',company='$company',salary='$salary',avatar='$avatar',is_admin='$is_admin' WHERE id='$id'";
+    $pwd = md5($data_array['password']);
+    $cmd = "UPDATE employee SET name='$data_array[name]',employee_id='$data_array[e_id]',email='$data_array[email]',password='$pwd',gender='$data_array[gender]',address='$data_array[address]',blood_group='$data_array[blood_group]',mobile_no='$data_array[mobile]',hobbies='$hobbie',year_from='$data_array[year_from]',year_to='$data_array[year_to]',position='$data_array[position]',company='$data_array[company]',salary='$data_array[salary]',avatar='$file_name',is_admin='$data_array[is_admin]' WHERE id='$id'";
     $result = mysqli_query($con, $cmd) or die(mysqli_error($con));
     if ($result) {
         echo "<script>alert('Update Successful');</script>";

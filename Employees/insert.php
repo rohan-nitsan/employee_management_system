@@ -249,7 +249,7 @@ if (empty($_SESSION)) {
                                     <div class="col-md-6 mb-4">
                                         <h6 class="form-label">Profile Picture</h6>
                                         <div class="input-group mb-3">
-                                            <input type="file" class="form-control" name="avatar" id="avatar">
+                                            <input type="file" class="form-control" name="avatar" id="avatar" alt="Image Not Found">
                                         </div>
                                         <p class="error" id="avatar_error"></p>
                                     </div>
@@ -447,7 +447,7 @@ if (isset($_POST['register'])) {
         $valid = 0;
     }
     if ($valid == 1) {
-        insert($name, $e_id, $email, $password, $gender, $building, $street, $road, $city, $state, $pin, $blood_group, $mobile, $hobbies, $year_from, $year_to, $position, $company, $salary, $avatar, $is_admin);
+        insert($_POST);
     }
 }
 
